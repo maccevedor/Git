@@ -117,7 +117,7 @@ inner join estados e on  e.id=m.relacion order by m.municipio";
 
 
 
-//conviente el primer caraceter a mayuscula
+//conviente el primer caraceter a mayuscula esto no funciona con tildes , presento problemas
 function ucname($string) {
     $string =ucwords(strtolower($string));
 

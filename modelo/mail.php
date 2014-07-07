@@ -9,6 +9,17 @@ $email = $_REQUEST['Email'];
 $programa = $_REQUEST['cPrograma'];
 
 
+$sqlMandrill="select * from clave where servicio='mandrill'";
+$statement = $conex->prepare($sqlMandrill);
+$statement->execute();
+$row = $statement->fetch(); 
+$mandrillUser= $row["usuario"];
+$mandrillPass= $row["clave"];
+//echo "$mandrillUser";
+//echo "$mandrillPass";
+
+
+
 
 
 $sql="select Url from programa where id='$programa'";
@@ -53,8 +64,10 @@ $text = "Mandrill speaks plaintext";
 //$html = "<em>Este es el envio que se realiza para responderle al estuciante Mandrill speaks no entiendo poraque no sale el texto <strong>HTML</strong></em>";
 
 $transport = Swift_SmtpTransport::newInstance('smtp.mandrillapp.com', 587);
-$transport->setUsername('tecnologia@umb.edu.co');
-$transport->setPassword('a9nuKggtFBlZlTNh_OtYuw');
+//$transport->setUsername('tecnologia@umb.edu.co');
+$transport->setUsername($mandrillUser);
+$transport->setPassword($mandrillPass);
+//$transport->setPassword('a9nuKggtFBlZlTNh_OtYuw');
 $swift = Swift_Mailer::newInstance($transport);
 
 $message = new Swift_Message($subject);

@@ -343,7 +343,7 @@
             </div>
 			<div class="fitem">
 				<label>Foto:</label>
-				<input type="file" id="foto" name="foto" class="easyui-validatebox" data-max-size="2048" >
+				<input type="file" id="foto" name="foto" class="easyui-validatebox" data-max-size="2048" accept="image/*,.dmg" >
 			</div>
 
 			<input type="hidden" name="User" class="easyui-validatebox"  value="<?php echo $myusername ?>">

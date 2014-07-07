@@ -1,0 +1,12 @@
+modelo/conexion.php
+img/
+*.jpg
+*.jpeg
+*.png
+*.pdf
+*.gif
+*.js
+*.css
+images/
+lib/
+js/

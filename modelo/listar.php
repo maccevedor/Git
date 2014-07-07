@@ -87,6 +87,10 @@
 					if (result.success){
 						$('#dlg').dialog('close');		// close the dialog
 						$('#dg').datagrid('reload');	// reload the user data
+						$.messager.show({
+							title: 'Datos',
+							msg: 'Los datos Fueron Guardados Correctamente.'
+						});
 					} else {
 						$.messager.show({
 							title: 'Error',
@@ -122,15 +126,19 @@
 			var row = $('#dg').datagrid('getSelected');
 			if (row){
 				//$('#dlg').dialog('open').dialog('setTitle','Enviar Correo');
-				alert('Se envio Correctamente al correto '+row.Email);
+				alert('Se esta enviando el correo a  '+row.Email);
 				$('#fm').form('load',row);
 				$.post('mail.php',{id:row.id,Email:row.Email,cPrograma:row.cPrograma},function(result){
 							if (result.success){
 								$('#dg').datagrid('reload');	// reload the user data
+								$.messager.show({
+									title: 'Datos',
+									msg: 'Se envio correctamento el correo a '+row.Email
+								});
 							} else {
 								$.messager.show({	// show error message
 									title: 'Error',
-									msg: result.msg
+									msg: 'No se pudo enviar correctamento el correo a '+row.Email
 								});
 							}
 						},'json');

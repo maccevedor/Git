@@ -95,14 +95,14 @@ include("modelo/funciones.php");
     <div id="logo-wrapper">
       <!-- <div class="container"> -->
         <div id="logo">
-          <a href="http://portal.umbvirtual.edu.co"><img src="http://portal.umbvirtual.edu.co/wp-content/uploads/2014/01/logo2.png" width="365" height="70" border="0" alt="UMB Virtual" class=""></a>
+          <a href="http://umbvirtual.edu.co/"><img src="http://umbvirtual.edu.co//wp-content/uploads/2014/01/logo2.png" width="365" height="70" border="0" alt="UMB Virtual" class=""></a>
         </div>
       <!-- </div> -->
     </div>
     <!-- Menu -->
     <div id="small-nav">
       <div id="container-menu">
-        <a id="" href="http://portal.umbvirtual.edu.co">Inicio</a>
+        <a id="" href="http://umbvirtual.edu.co/">Inicio</a>
       </div>
     </div>
     <!-- tool bar -->

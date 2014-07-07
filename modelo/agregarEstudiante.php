@@ -1,7 +1,16 @@
 <?php
+
 $day=date('Y-m-d H:i:s');
 	require_once("conexion.php");
 	$conex = conectaBaseDatos();
+
+
+
+//copy($_FILES["foto"]["tmp_name"],"fotos/".$_FILES["foto"]["name"]);
+ 
+
+ // var_dump($_FILES);
+ // exit();
 
 $Identificacion = $_REQUEST['Identificacion'];
 $Nombre = $_REQUEST['Nombre'];

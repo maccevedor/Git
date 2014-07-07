@@ -257,7 +257,7 @@
 	<div id="dlg" class="easyui-dialog" style="width:600px;height:600px;padding:20px 30px"
 			closed="true" buttons="#dlg-buttons">
 		<div class="ftitle">Información</div>
-		<form id="fm" method="post" novalidate>
+		<form id="fm" method="post" novalidate enctype="multipart/form-data">
 			<div class="fitem">
 				<label>Identificacion:</label>
 				<input name="Identificacion" class="easyui-validatebox" required="true">
@@ -341,7 +341,10 @@
                     <option value="AB-">AB-</option>
                 </select>
             </div>
-
+			<div class="fitem">
+				<label>Foto:</label>
+				<input type="file" id="foto" name="foto" class="easyui-validatebox" data-max-size="2048" >
+			</div>
 
 			<input type="hidden" name="User" class="easyui-validatebox"  value="<?php echo $myusername ?>">
 

@@ -306,6 +306,9 @@
 			    <option value="Chat">Chat</option>
 			    <option value="Referido">Referido</option>
 			    <option value="Teléfono">Teléfono</option>
+			    <option value="Teléfono">Tv(Caracol)</option>
+			    <option value="Teléfono">Tv(Fox)</option>
+			    <option value="Teléfono">Tv(Warner)</option>
 				</select>
 			</div>
 			<div class="fitem">

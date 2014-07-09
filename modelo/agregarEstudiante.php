@@ -21,8 +21,10 @@ $Programa = $_REQUEST['cPrograma'];
 $Fuente = $_REQUEST['Fuente'];
 $Observacion = $_REQUEST['Observacion'];
 $Rh= $_REQUEST['Rh'];
+$Ciudad= $_REQUEST['Ciudad'];
 
-$sql = "insert into estudiante(Identificacion,Nombre,Apellido,Telefono,Email,Programa,Fuente,Observacion,Fch,Rh) values('$Identificacion','$Nombre','$Apellido','$Telefono','$Email','$Programa','$Fuente','$Observacion','$day','$Rh')";
+
+$sql = "insert into estudiante(Identificacion,Nombre,Apellido,Telefono,Email,Programa,Fuente,Observacion,Fch,Rh,Ciudad) values('$Identificacion','$Nombre','$Apellido','$Telefono','$Email','$Programa','$Fuente','$Observacion','$day','$Rh','$Ciudad')";
 $sql=$conex->query($sql);
 //$sql->execute();
 //$result=$sql->fetchAll();

@@ -278,6 +278,19 @@
 				<label>Email:</label>
 				<input name="Email" class="easyui-validatebox" validType="email">
 			</div>
+			<label>Ciudad:</label>
+			<div class="fitem">
+                              <select id="Ciudad" name="Ciudad" class="span12" >
+                                <option value="">Selecciona una ciudad</option>
+									                                <?php
+									$ciudades = dameCiudad();
+
+									foreach($ciudades as $indice => $registro){
+									echo "<option value=".$registro['id'].">".$registro['municipio'].' -'.$registro['estado']."</option>";
+									}
+									?>
+                              </select>
+                            </div>
 			<div class="fitem">
 				<label>Programa:</label>
 				<!-- <input name="Programa" class="easyui-validatebox" required="true"> -->
@@ -314,9 +327,9 @@
 			    <option value="Chat">Chat</option>
 			    <option value="Referido">Referido</option>
 			    <option value="Teléfono">Teléfono</option>
-			    <option value="Teléfono">Tv(Caracol)</option>
-			    <option value="Teléfono">Tv(Fox)</option>
-			    <option value="Teléfono">Tv(Warner)</option>
+			    <option value="Tv(Caracol)">Tv(Caracol)</option>
+			    <option value="Tv(Fox)">Tv(Fox)</option>
+			    <option value="Tv(Warner)">Tv(Warner)</option>
 				</select>
 			</div>
 			<div class="fitem">

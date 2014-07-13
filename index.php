@@ -692,12 +692,12 @@ echo "<option value=".$registro['id'].">".$registro['municipio'].' - '.$registro
                               </div>
                         </div>
                       </div>
-                      
+                      <input type="hidden" name="fuente" id="funete" value="">
                       <!-- <div class="control-group">	 -->
-                      <div class="centered">
+                      <!-- <div class="centered">
                         <div id="contenedor"> </div>
                       </div>
-                      <!-- </div> -->
+                
                       
                       <div class="control-group franja-gris">
                         <div class="centered">
@@ -712,7 +712,7 @@ echo "<option value=".$registro['id'].">".$registro['municipio'].' - '.$registro
                             <option value="Amigo o Conocido">Amigo o Conocido</option>
                           </select>
                         </div>
-                      </div>
+                      </div> -->
                     </fieldset>
                     <!-- step 2-->
                     <fieldset class="tab-pane" id="inverse-tab2" >

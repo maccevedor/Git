@@ -326,6 +326,8 @@
 			    <option value="Home">Toma de Home</option>
 			    <option value="Chat">Chat</option>
 			    <option value="Referido">Referido</option>
+			    <option value="Radio">Radio</option>
+			    <option value="Revista">Revista</option>
 			    <option value="Teléfono">Teléfono</option>
 			    <option value="Tv(Caracol)">Tv(Caracol)</option>
 			    <option value="Tv(Fox)">Tv(Fox)</option>

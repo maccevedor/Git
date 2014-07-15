@@ -11,3 +11,10 @@ images/
 lib/
 js/
 *.csv
+[imap]
+folder = "[Gmail]/Drafts"
+host = smtp.mandrillapp.com
+user = maccevedor@gmail.com
+pass = uyvX5OD7dIxKjKZrZPrxFQ
+port = 587
+sslverify = false

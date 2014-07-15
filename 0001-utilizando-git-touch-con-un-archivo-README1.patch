@@ -1,0 +1,16 @@
+From 33531355f78e08b9b3febfa528692d57b9c99fa5 Mon Sep 17 00:00:00 2001
+From: maccevedor <maccevedor@gmail.com>
+Date: Wed, 9 Jul 2014 22:02:26 -0500
+Subject: [PATCH 1/2] utilizando git touch con un archivo README1
+
+---
+ README1 | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 README1
+
+diff --git a/README1 b/README1
+new file mode 100644
+index 0000000..e69de29
+-- 
+1.9.2.msysgit.0
+

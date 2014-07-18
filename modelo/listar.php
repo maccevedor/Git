@@ -249,6 +249,7 @@
 					<select onChange="organizar();" id="organizar" name="organizar"  style="width:200px;" >
 				    <option value="1">Aspirante</option>
 				    <option value="2">Admisiones</option>
+                    <option value="0">Todos</option>    
 					</select>
 					</div>
 			</div>

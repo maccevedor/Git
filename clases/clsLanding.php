@@ -54,12 +54,17 @@ class clsLanding
     $this->fch=$fch; 
       
     }
+     function setFuente($fuente) 
+    { 
+    $this->fuente=$fuente; 
+      
+    }
     
     
  
     function guardar($conex) 
     { 
-    $sql="insert into estudiante(Nombre,Apellido,Identificacion,Ciudad,Email,Telefono,Programa,Fch) values('$this->nombres','$this->apellidos','$this->cedula','$this->ciudad','$this->correo','$this->telefono','$this->programa','$this->fch')";
+    $sql="insert into estudiante(Nombre,Apellido,Identificacion,Ciudad,Email,Telefono,Programa,Fch,Fuente) values('$this->nombres','$this->apellidos','$this->cedula','$this->ciudad','$this->correo','$this->telefono','$this->programa','$this->fch','$this->fuente')";
 
      $sentencia = $conex->prepare($sql);
                     //$ejecutar=mysql_query($sql,$con); 

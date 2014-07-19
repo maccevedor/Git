@@ -1,5 +1,5 @@
 <?php
-include("../clase/clsLanding.php"); 
+include("../clases/clsLanding.php"); 
 include("../modelo/conexion.php"); 
 include("../modelo/funciones.php"); 
     //crear el objeto con base en la clase 
@@ -7,8 +7,8 @@ include("../modelo/funciones.php");
   $conex = conectaBaseDatos();
 
     $names =array($_REQUEST['nombres'],$_REQUEST['apellidos']);
-    $nombres=ucname($names[0]);
-    $apellidos=ucname($names[1]);
+    $nombres=ucfirst($names[0]);
+    $apellidos=ucfirst($names[1]);
 
     $objPag=new clsLanding(); 
     $objPag->setNombres($nombres); 
@@ -19,9 +19,9 @@ include("../modelo/funciones.php");
     $objPag->setTelefono($_REQUEST['telefono']); 
     $objPag->setPrograma($_REQUEST['programa']);  
     $objPag->setFch($_REQUEST['fch']);
+    $objPag->setFuente($_REQUEST['fuente']);
 
-
-
+    $objPag->guardar($conex);  
 	 
 
   $nombresP = (isset($_REQUEST['nombres'])) 
@@ -49,6 +49,9 @@ include("../modelo/funciones.php");
 
     $programaP = (isset($_REQUEST['programa'])) 
     ? trim(strip_tags($_REQUEST['programa']))
+    : ""; 
+    $fuenteP = (isset($_REQUEST['fuente'])) 
+    ? trim(strip_tags($_REQUEST['fuente']))
     : ""; 
 
 if ($correoP=="" && $telefonoP=="") {
@@ -94,7 +97,7 @@ if ($correoP=="" && $telefonoP=="") {
 				);
 
 				$text = "Mandrill speaks plaintext";
-				$html = "<em>Cordial Saludo<br><br>El siguiente usuario realizó su pre-inscripción vía web por medio del Landing Page:<br><br>
+				$html = "<em>Cordial Saludo<br><br>El siguiente usuario realizó su pre-inscripción vía web por medio del Landing Page de la pagina de la UMB Virtual:<br><br>
 				Nombres: ".$nombresP."<br> Apellidos: ".$apellidosP."<br> Identificación ".$cedulaP."<br> Ciudad: ".$ciudad."<br> Correo: ".$correoP."<br> Teléfono: ".$telefonoP."<br> Programa: ".$programa." <br><br><center>www.umbvirtual.edu.co</center><br><center>Favor no responder a  este e-mail ya que fue generado por un programa de envios de correos másivos</center></em>";
 
 				$transport = Swift_SmtpTransport::newInstance('smtp.mandrillapp.com', 587);
@@ -119,8 +122,15 @@ if ($correoP=="" && $telefonoP=="") {
 				 print_r($failures);
 				}
 
-                $objPag->guardar($conex);  
+                
 			}
+
+               if ($fuenteP=='expoelearning') {
+
+                    header('Location: expo.php');
+                        # code...
+                } 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

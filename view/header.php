@@ -21,18 +21,10 @@
   	<div class="container">
     <!-- Logo -->
 		<div class="row">
-	    	<div id="logo-wrapper">
-				<div class="col-md-6">
-					<div class="logo" id="virtual">
-						<a href="http://umbvirtual.edu.co/"><img src="http://umbvirtual.edu.co//wp-content/uploads/2014/01/logo2.png" width="365" height="70" border="0" alt="UMB Virtual" class=""></a>
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<div class="logo" id="expo">
-<!--						<img src="img/expo-eLearning.jpg" width="365" height="70" border="0" alt="UMB Virtual" class="">-->
-					</div>
-				</div>
+                <div id="logo">
+                    <div class="logo" id="virtual">
+                            <a href="http://umbvirtual.edu.co/"><img src="http://umbvirtual.edu.co//wp-content/uploads/2014/01/logo2.png" width="365" height="70" border="0" alt="UMB Virtual" class="normal-logo"></a>
+                        </div>
 			</div>
 	    </div>
 	</div>

@@ -14,10 +14,32 @@
 	$bapellido = isset($_POST['productid']) ? $_POST['bapellido'] : '';
 	$admisiones = isset($_POST['admisiones']) ? $_POST['admisiones'] : '';
 	$estado = isset($_POST['estado']) ? $_POST['estado'] : '1';
-	
+	$oPrograma = isset($_POST['oPrograma']) ? $_POST['oPrograma'] : '';
     $whereEstado="Estado <> $estado";
-    //echo $whereEstado;
+    if($oPrograma<>0)
+    {
+    //echo $oPrograma;
+        //consulta que solo trae por programas
+    $sql=$conex->query("select count(*) as total from estudiante where estado='$estado'and programa='$oPrograma'");
+						$sql->execute();
+						$result=$sql->fetchAll(PDO::FETCH_ASSOC);
+						$results["total"]=$result[0]["total"];
+						$consulta=("select e.Id as id,e.Identificacion as Identificacion,e.Nombre as Nombre,e.Apellido as Apellido,e.Telefono as Telefono,e.Email as Email,p.Programa as Programa,e.Fch as Fch,e.FchRespuesta as FchRespuesta , e.programa as cPrograma ,e.umb , Observacion,Fuente,CASE Estado WHEN 1 THEN 'Inscripcion' WHEN 2 THEN 'Admisiones'  else Estado end as Estado from estudiante e , programa p where Estado='$estado' and e.programa='$oPrograma' and e.Programa=p.id order by $sort $order limit $offset,$rows");
+                        //echo $consulta;
+						$sql=$conex->query($consulta);
+                        $sql->execute();
+						$rows=$sql->fetchAll(PDO::FETCH_ASSOC);
 
+						foreach($rows as $row){
+
+						array_push($crud, $row);  
+						}  
+						$results["rows"]=$crud;
+
+						echo json_encode($results);
+                        exit();
+    }
+    
 						if (empty($itemid) && empty($productid) && empty($bapellido)){
 
                             

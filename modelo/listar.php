@@ -177,7 +177,8 @@
 		function organizar(){
 			
 			 $('#dg').datagrid('load',{
-			        estado: $('#organizar').val()
+			        estado: $('#organizar').val(),
+                    oPrograma: $('#oPrograma').val(),
 			    });		
 		}
 	</script>
@@ -236,7 +237,7 @@
 		<a href="#" class="easyui-linkbutton" iconCls="icon-mail" plain="true" onclick="EmailEstudiante()">Enviar correo al aspirante</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="desconectar()">Desconectar</a>
 
-				<div id="tb" style="padding:3px">
+            <div id="tb" style="padding:3px">
 			    <span>Identificacion:</span>
 			    <input id="bidentificacion" name="bidentificacion" style="line-height:26px;border:1px solid #ccc" onkeypress="doSearch()">
 			    <span>Nombre:</span>
@@ -252,9 +253,20 @@
                     <option value="0">Todos</option>    
 					</select>
 					</div>
+                    <label>Programa:</label>
+                    <!-- <input name="Programa" class="easyui-validatebox" required="true"> -->
+                    <select onChange="organizar();" name="oPrograma"  id="oPrograma" class="easyui-validatebox">
+                        <option value="0">- Seleccione un  nivel formación -</option>
+                            <?php
+                                $Programa = programa();
+
+                                foreach($Programa as $indice => $registro){
+                                echo "<option value=".$registro['id'].">".$registro['Programa']."</option>";
+                                }
+                            ?>
+                        </select>
 			</div>
-	</div>
-	
+
 	<div id="dlg" class="easyui-dialog" style="width:600px;height:600px;padding:20px 30px"
 			closed="true" buttons="#dlg-buttons">
 		<div class="ftitle">Información</div>

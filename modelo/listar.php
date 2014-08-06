@@ -17,7 +17,7 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
 	<link rel="stylesheet" type="text/css" href="../css/icon.css">
-	<link rel="stylesheet" type="text/css" href="../css/demo.css">
+
 	<script type="text/javascript" src="datagrid-filter.js"></script>
 
 	<style type="text/css">
@@ -186,14 +186,13 @@
 </head>
 
         <div id="logo">
-          <a href="http://portal.umbvirtual.edu.co"><img src="http://portal.umbvirtual.edu.co/wp-content/uploads/2014/01/logo2.png" width="365" height="70" border="0" alt="UMB Virtual" class=""></a>
+          <a href="http://umbvirtual.edu.co"><img  src="http://portal.umbvirtual.edu.co/wp-content/uploads/2014/01/logo2.png"  border="0" alt="UMB Virtual" aligh="center"></a>
         </div>
 
 <body>
 	<h2>Usuario:<?php echo $myusername ?></h2><br>
 	<h2>Lista</h2>
 	<div class="demo-info" style="margin-bottom:10px">
-		<div class="demo-tip icon-tip">&nbsp;</div>
 		<div>Seleccione el Estudiante que desea enviarle el correo</div>
 	</div>
 	

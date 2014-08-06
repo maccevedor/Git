@@ -175,7 +175,7 @@ if ($correoP=="" && $telefonoP=="") {
         <div class="container">
             <div id="cabezote">
                 <div class="umb"><img src="../img/escudoUMB.png"></div>
-                <div class="virtual"><img src="../img/umbVirtual.png"></div>
+                <div class="virtual"><img src="../img/logo2.png"></div>
             </div>
         </div>
     </div>

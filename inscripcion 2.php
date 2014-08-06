@@ -212,8 +212,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<div class="col-md-1">
 						<input type="checkbox" name="termino" id="termino" value="" size="5" class="" required>
 					</div>
-
-					<div class="col-md-11">
+					<div class="col-md-1">
 						<div id="mensaje">
 								Acepto cláusula de tratamiento de datos personales. <a onclick="vermas()">Leer más</a>
 							</div>

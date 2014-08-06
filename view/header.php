@@ -9,13 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <!-- <link rel="shortcut icon" href="assets/ico/favicon.ico"> -->
+     <link rel="shortcut icon" href="assets/ico/favicon.ico"> 
+      <script type="text/javascript" src="http://umbvirtual.edu.co/inscripcion/js/javascript.js"></script>
 
     <title>Inscripción</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/main.css" rel="stylesheet">
-
+      
   <header>
 
   	<div class="container">

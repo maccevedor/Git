@@ -75,10 +75,8 @@ include('view/header.php');
 					<div class="col-md-1">
 						<input type="checkbox" name="termino" id="termino" value="" size="5" class="" required>
 					</div>
-
 					<div class="col-md-11">
-						<div id="mensaje">
-								Acepto cláusula de tratamiento de datos personales. <a onclick="vermas()">Leer más</a>
+						<div id="mensaje">Acepto cláusula de tratamiento de datos personales. <a onclick="vermas()">Leer más</a>
 							</div>
 					</div>
 

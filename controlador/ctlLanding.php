@@ -58,39 +58,45 @@ if ($correoP=="" && $telefonoP=="") {
             header("Location: ../error.html");
         }else{	
 
-				$sql="select municipio from municipios where id='$ciudadP'";
+				$sql="select municipio,relacion from municipios where id='$ciudadP'";
 				//$nombreCiudad=mysql_fetch_array(mysql_query($sql,$conexion));
 				//$ciudad = $nombreCiudad[0];
-
                 $statement = $conex->prepare($sql);
                 $statement->execute();
                 $row = $statement->fetch();
                 $ciudad= $row["municipio"];
+                $departamento= $row["relacion"];
 
 
 				$sql="select programa from programa where id='$programaP'";
-				//$nombrePrograma=mysql_fetch_array(mysql_query($sql,$conexion));
-				//$programa = $nombrePrograma[0];
-                 
                 $statement = $conex->prepare($sql);
                 $statement->execute();
                 $row = $statement->fetch();
                 $programa= $row["programa"];
 
-
-				if($programaP =='0' || $programaP =='1' || $programaP =='2' || $programaP =='4'|| $programaP =='5'|| $programaP =='8' || $programaP =='9' || $programaP =='12' || $programaP =='13' || $programaP =='14'){
-					$destino ="claudia.santacruz@umb.edu.co";
-
-				}
-				else
-				{
-				   $destino="liset.abreu@umb.edu.co";
-				}
-
+                if($departamento=='776' || $fuenteP=='Tolima'){
+                    //$destino ="johanna.forero@umb.edu.co";
+                    $destino ="laura.toro@umb.edu.co ";
+                    $subject = 'Pre-Inscripción por Landing Page 2014 Virtual Tolima (Google)';  
+                    $CC="johanna.forero@umb.edu.co"; 
+                    //$CC="maccevedor@gmail.com"; 
+                }else{
+                    if($programaP =='0' || $programaP =='1' || $programaP =='2' || $programaP =='4'|| $programaP =='5'|| $programaP =='8' || $programaP =='9' || $programaP =='12' || $programaP =='13' || $programaP =='14'){
+                        $destino ="claudia.santacruz@umb.edu.co";
+                        $subject = 'Pre-Inscripción por Landing Page 2014 Virtual (Google)';
+                        $CC="uvirtual@umb.edu.co";     
+                    }
+                    else
+                    {
+                        $destino="liset.abreu@umb.edu.co";
+                        $subject = 'Pre-Inscripción por Landing Page 2014 Virtual (Google)'; 
+                        $CC="uvirtual@umb.edu.co";   
+                    }
+                }
 
 				include_once "../lib/Swift/swift_required.php";
 
-				$subject = 'Pre-Inscripción por Landing Page 2014 Virtual (Google)';
+				
 				$from = array('uvirtual@umb.edu.co' =>'UMB Virtual');
 				$to = array(
 				 $destino => 'Asesor UMB virtual'
@@ -108,7 +114,8 @@ if ($correoP=="" && $telefonoP=="") {
 				$message = new Swift_Message($subject);
 				$message->setFrom($from);
 				//$message->setCc(array("mauricio.acevedo@umb.edu.co" => "UMB virtual"));
-				$message->setCc(array("uvirtual@umb.edu.co" => "UMB virtual"));
+                //$message->setCc(array("maccevedor@gmail.com" => "UMB virtual"));
+                $message->setCc(array($CC => "UMB virtual"));
 				//$message->attach(Swift_Attachment::fromPath('../img/2.pdf')->setFilename('2.pdf'));
 				$message->setBody($html, 'text/html');
 				$message->setTo($to);
@@ -116,7 +123,10 @@ if ($correoP=="" && $telefonoP=="") {
 
 				if ($recipients = $swift->send($message, $failures))
 				{
-				 //echo 'Message successfully sent!';
+				 // echo 'Message successfully sent!';
+     //             echo $CC;
+     //             echo $destino;
+                    //echo $fuenteP;
 				} else {
 				 echo "Se presentó un error al realizar el envio del correo por favor comunicarse al 5460600 ext 1470 / 1473. :\n";
 				 print_r($failures);

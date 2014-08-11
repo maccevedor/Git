@@ -5,7 +5,7 @@
  //require_once('logout.php');
  $myusername = $_SESSION['login_user'];
  //echo $myusername;
-
+$sede=$_SESSION['sede'];
  ?>
 <!DOCTYPE html>
 <html>
@@ -197,7 +197,7 @@
 	</div>
 	
 	<table id="dg" title="Usuarios que realizaron el proceso de inscripcion" class="easyui-datagrid" style="width:1280px;height:800px"
-			 url="estudiante.php"
+			 url="estudiante.php?sede=<?php echo $sede ?>"
 			toolbar="#toolbar" pagination="true"
 			rownumbers="true" fitColumns="true" singleSelect="true"  >
 		<thead>

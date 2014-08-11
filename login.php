@@ -10,11 +10,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 // username and password sent from form 
 
 $myusername=addslashes($_POST['username']); 
-$mypassword=addslashes($_POST['password']); 
+$mypassword=addslashes($_POST['password']);  
 $mypassword=md5($mypassword);
 
 $conex = conectaBaseDatos();
-$sql="SELECT id FROM admin WHERE username='$myusername' and passcode='$mypassword'";
+$sql="SELECT id,sede FROM admin WHERE username='$myusername' and passcode='$mypassword'";
 //$result=mysql_query($sql);
 //$row=mysql_fetch_array($result);
 //$active=$row['active'];
@@ -31,6 +31,7 @@ if($row > 0)
 {
 session_start("myusername");
 $_SESSION['login_user']=$myusername;
+$_SESSION['sede']=$row["sede"];
 
 header("location: modelo/listar.php");
 }

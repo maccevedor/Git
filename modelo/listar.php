@@ -126,9 +126,11 @@ $sede=$_SESSION['sede'];
 			var row = $('#dg').datagrid('getSelected');
 			if (row){
 				//$('#dlg').dialog('open').dialog('setTitle','Enviar Correo');
+                var myusername = "<?php echo $myusername; ?>";
+                var sede = "<?php echo $sede; ?>";
 				alert('Se esta enviando el correo a  '+row.Email);
 				$('#fm').form('load',row);
-				$.post('mail.php',{id:row.id,Email:row.Email,cPrograma:row.cPrograma},function(result){
+				$.post('mail.php?usuario='+myusername+'&sede='+sede,{id:row.id,Email:row.Email,cPrograma:row.cPrograma},function(result){
 							if (result.success){
 								$('#dg').datagrid('reload');	// reload the user data
 								$.messager.show({
@@ -320,10 +322,6 @@ $sede=$_SESSION['sede'];
 			</div>
 
 
-
-
-
-
 			<div class="fitem">
 				<label>Observacion:</label>
 				<input name="Observacion" class="easyui-validatebox" validType="text">
@@ -335,6 +333,7 @@ $sede=$_SESSION['sede'];
 			    <option value="UmbVirtual">UmbVirtual(Home)</option>
 			    <option value="Programas">UmbVirtual(Programas)</option>
 			     <option value="Indexcol">Indexcol</option>
+                <option value="Tolima">Tolima</option>
 			    <option value="Home">Toma de Home</option>
 			    <option value="Chat">Chat</option>
 			    <option value="Referido">Referido</option>

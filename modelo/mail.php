@@ -2,12 +2,27 @@
 include_once "conexion.php";
 //Se llama a la libreria de envio de correos
 include_once "../lib/Swift/swift_required.php";
+$sede=$_REQUEST['sede'];
+
+if($sede==776)
+    {
+    $direccion="Edificio Fontainebleau, Cra 5ª No. 37 Bis Local 101";
+    $ciudad="Ibague,Colombia";
+    $telefono="Teléfono (8) 2669053 ";
+    }else
+        {
+    $direccion="Km 27 vía Cajicá (+57 1) 546 06 00 Ext. 1470 - 1473.";
+    $ciudad="Cajicá, Colombia.";
+    $telefono="Teléfono: (+57 1) 546 06 00 Ext. 1470 - 1473";
+    }
+
 
 $conex = conectaBaseDatos();
 $id = intval($_REQUEST['id']);
 $email = $_REQUEST['Email'];
 $programa = $_REQUEST['cPrograma'];
-
+//$myusername = $_SESSION['login_user'];
+$myusername = $_REQUEST['usuario'];
 
 $sqlMandrill="select * from clave where servicio='mandrill'";
 $statement = $conex->prepare($sqlMandrill);
@@ -19,9 +34,6 @@ $mandrillPass= $row["clave"];
 //echo "$mandrillPass";
 
 
-
-
-
 $sql="select Url from programa where id='$programa'";
 $statement = $conex->prepare($sql);
 $statement->execute();
@@ -29,29 +41,26 @@ $row = $statement->fetch();
 $url= $row["Url"];
 
 
-
-
 $fchRespuesta=date('Y-m-d H:i:s');
 $sql="update estudiante set FchRespuesta = '$fchRespuesta' where Id=$id" ;
 //$result = @mysql_query($sql);
 $statement = $conex->prepare($sql);
 $statement->execute();
-$row = $statement->fetch(); 
+$row = $statement->fetch();
 
 
+//if($programa =='1' || $programa =='2' || $programa =='5'|| $programa =='8' || $programa =='9' || $programa =='12' || $programa =='13' || $programa =='14' || $programa =='19'){
+//    $destino ="claudia.santacruz@umb.edu.co";
+//    $asesor= "Claudia Santacruz";
+//}
+//else
+//{
+//   $destino="Liset.abreu@umb.edu.co";
+//	$asesor="Liset Abreu";
+//}
 
-if($programa =='1' || $programa =='2' || $programa =='5'|| $programa =='8' || $programa =='9' || $programa =='12' || $programa =='13' || $programa =='14' || $programa =='19'){
-    $destino ="claudia.santacruz@umb.edu.co";
-    $asesor	= "Claudia Santacruz";
-
-}
-else
-{
-   $destino="Liset.abreu@umb.edu.co";
-	$asesor="Liset Abreu";
-}
-
-
+$destino=$myusername."@umb.edu.co";
+$asesor=$myusername;
 
 
 $subject = 'Inscripcion Correcta !';
@@ -104,7 +113,7 @@ $message->setBody(
    </tr>
 	<tr>
 		<td colspan="5" bgcolor="#e8534f"><img src="http://portal.umbvirtual.edu.co/inscripcion/img/pensum/c'.$programa.'.jpg" width="600" height="815" alt="Header"/></td>
-	</tr>
+	</tr>  
 	<tr>
 	  <td colspan="5" bgcolor="#B0403D" height="10">&nbsp;</td>
   </tr>
@@ -140,17 +149,18 @@ $message->setBody(
 	  <td colspan="3" bgcolor="#B0403D" valign="top"><img src="http://www.umbvirtual.edu.co/wp-content/mail-corporativo/images/png/umbVirtual-footer.png" width="125" height="120" alt="UMB Virtual" border="0" align="left"/>
 		<h3 style="color:#FFF">Cordialmente,</h3>
         <p style="color:#FFF">
-			'.$asesor.'<br>
+			'.$myusername.'<br>
 			Asesora de Promoción.<br>
-			<a href="mailto:liset.abreu@umb.edu.co" title="Redactar un correo" style="color:#FFF;">'.$destino.'</a>
+			<a href="mailto:'.$myusername.'@umb.edu.co" title="Redactar un correo" style="color:#FFF;">'.$myusername.'@umb.edu.co</a>
 		</p>
       </td>
 	  <td bgcolor="#B0403D">&nbsp;</td>
   </tr>
 	<tr>
 	  <td colspan="5" bgcolor="#B0403D" valign="top" align="center" height="45" style="font-size:11px; color:#FFF">
-      	Km 27 vía Cajicá (+57 1) 546 06 00 Ext. 1470 - 1473.<br>
-		Cajicá, Colombia.
+      	'.$direccion.'<br>
+		'.$ciudad.'<br>
+        '.$telefono.'
       </td>
   </tr>
 </table>

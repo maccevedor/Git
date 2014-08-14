@@ -32,6 +32,8 @@ if($row > 0)
 session_start("myusername");
 $_SESSION['login_user']=$myusername;
 $_SESSION['sede']=$row["sede"];
+$_SESSION['id']=$row["id"];
+
 
 header("location: modelo/listar.php");
 }

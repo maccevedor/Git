@@ -2,7 +2,21 @@
 include_once "conexion.php";
 //Se llama a la libreria de envio de correos
 include_once "../lib/Swift/swift_required.php";
-$sede=$_REQUEST['sede'];
+$usuario=$_REQUEST['idUser'];
+$id = intval($_REQUEST['id']);
+$email = $_REQUEST['Email'];
+$programa = $_REQUEST['cPrograma'];
+
+
+$conex = conectaBaseDatos();
+$sql="select * from admin where id='$usuario'";
+$usuarios = $conex->prepare($sql);
+$usuarios->execute();
+$row = $usuarios->fetch(); 
+$myusername= $row["username"];
+$sede= $row["sede"];
+$cargo= $row["cargo"];
+
 
 if($sede==776)
     {
@@ -17,22 +31,12 @@ if($sede==776)
     }
 
 
-$conex = conectaBaseDatos();
-$id = intval($_REQUEST['id']);
-$email = $_REQUEST['Email'];
-$programa = $_REQUEST['cPrograma'];
-//$myusername = $_SESSION['login_user'];
-$myusername = $_REQUEST['usuario'];
-
 $sqlMandrill="select * from clave where servicio='mandrill'";
 $statement = $conex->prepare($sqlMandrill);
 $statement->execute();
 $row = $statement->fetch(); 
 $mandrillUser= $row["usuario"];
 $mandrillPass= $row["clave"];
-//echo "$mandrillUser";
-//echo "$mandrillPass";
-
 
 $sql="select Url from programa where id='$programa'";
 $statement = $conex->prepare($sql);
@@ -40,28 +44,14 @@ $statement->execute();
 $row = $statement->fetch(); 
 $url= $row["Url"];
 
-
 $fchRespuesta=date('Y-m-d H:i:s');
 $sql="update estudiante set FchRespuesta = '$fchRespuesta' where Id=$id" ;
-//$result = @mysql_query($sql);
 $statement = $conex->prepare($sql);
 $statement->execute();
 $row = $statement->fetch();
 
-
-//if($programa =='1' || $programa =='2' || $programa =='5'|| $programa =='8' || $programa =='9' || $programa =='12' || $programa =='13' || $programa =='14' || $programa =='19'){
-//    $destino ="claudia.santacruz@umb.edu.co";
-//    $asesor= "Claudia Santacruz";
-//}
-//else
-//{
-//   $destino="Liset.abreu@umb.edu.co";
-//	$asesor="Liset Abreu";
-//}
-
 $destino=$myusername."@umb.edu.co";
 $asesor=$myusername;
-
 
 $subject = 'Inscripcion Correcta !';
 $from = array('uvirtual@umb.edu.co' =>'UMB');
@@ -85,7 +75,6 @@ $message->setCc(array($destino => "UMB virtual"));
 $message->attach(Swift_Attachment::fromPath('../img/pensum/financiacion.pdf')->setFilename('financiacion.pdf'));
 $message->attach(Swift_Attachment::fromPath('../img/pensum/'.$programa.'.jpg')->setFilename('pensum.jpg'));
 //$message->setBody($html, 'text/html');
-
 
 $message->setBody(
 '<html>
@@ -150,7 +139,7 @@ $message->setBody(
 		<h3 style="color:#FFF">Cordialmente,</h3>
         <p style="color:#FFF">
 			'.$myusername.'<br>
-			Asesora de Promoción.<br>
+			'.$cargo.'<br>
 			<a href="mailto:'.$myusername.'@umb.edu.co" title="Redactar un correo" style="color:#FFF;">'.$myusername.'@umb.edu.co</a>
 		</p>
       </td>
@@ -173,7 +162,6 @@ $message->setBody(
 $message->setTo($to);
 $message->addPart($text, 'text/plain');
 //sleep(20);
-
 
 if ($recipients = $swift->send($message, $failures))
 {

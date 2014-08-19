@@ -4,6 +4,8 @@
  require_once('funciones.php');
  //require_once('logout.php');
  $myusername = $_SESSION['login_user'];
+ $idUser=$_SESSION['id'];
+ //echo $idUser;
  //echo $myusername;
 $sede=$_SESSION['sede'];
  ?>
@@ -75,6 +77,15 @@ $sede=$_SESSION['sede'];
 				url = 'modificarEstudiante.php?id='+row.id;
 			}
 		}
+		//Ver mas informacion
+		function verUser(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$('#dlg').dialog('open').dialog('setTitle','Editar Usuario');
+				$('#fm').form('load',row);
+				url = 'modificarEstudiante.php?id='+row.id;
+			}
+		}
 		//Se encarga de guardar los estudiantes nuevos
 		function saveUser(){
 			$('#fm').form('submit',{
@@ -128,9 +139,10 @@ $sede=$_SESSION['sede'];
 				//$('#dlg').dialog('open').dialog('setTitle','Enviar Correo');
                 var myusername = "<?php echo $myusername; ?>";
                 var sede = "<?php echo $sede; ?>";
+                var idUser = "<?php echo $idUser; ?>"; 
 				alert('Se esta enviando el correo a  '+row.Email);
 				$('#fm').form('load',row);
-				$.post('mail.php?usuario='+myusername+'&sede='+sede,{id:row.id,Email:row.Email,cPrograma:row.cPrograma},function(result){
+				$.post('mail.php?idUser='+idUser,{id:row.id,Email:row.Email,cPrograma:row.cPrograma},function(result){
 							if (result.success){
 								$('#dg').datagrid('reload');	// reload the user data
 								$.messager.show({
@@ -183,6 +195,15 @@ $sede=$_SESSION['sede'];
                     oPrograma: $('#oPrograma').val(),
 			    });		
 		}
+		function getSelections(){
+			var ids = [];
+			var rows = $('#dg').datagrid('getSelections');
+			for(var i=0; i<rows.length; i++){
+				ids.push(rows[i].id);
+			}
+			alert(ids.join('\n'));
+		}
+
 	</script>
 
 </head>
@@ -198,10 +219,10 @@ $sede=$_SESSION['sede'];
 		<div>Seleccione el Estudiante que desea enviarle el correo</div>
 	</div>
 	
-	<table id="dg" title="Usuarios que realizaron el proceso de inscripcion" class="easyui-datagrid" style="width:1280px;height:800px"
+	<table id="dg" title="Usuarios que realizaron el proceso de inscripcion"  class="easyui-datagrid" style="width:1280px;height:800px"
 			 url="estudiante.php?sede=<?php echo $sede ?>"
 			toolbar="#toolbar" pagination="true"
-			rownumbers="true" fitColumns="true" singleSelect="true"  >
+			rownumbers="true" fitColumns="true"  pageSize="20" pageList="[20,50,100,500]">
 		<thead>
 			<tr>
 				<th field="Identificacion" width="50" sortable="true">Identificacion</th>
@@ -237,6 +258,8 @@ $sede=$_SESSION['sede'];
 		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Agregar</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-mail" plain="true" onclick="EmailEstudiante()">Enviar correo al aspirante</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="desconectar()">Desconectar</a>
+		<a href="#" class="easyui-linkbutton" onclick="getSelections()">Correo Masivo</a>
+
 
             <div id="tb" style="padding:3px">
 			    <span>Identificacion:</span>

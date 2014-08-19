@@ -8,6 +8,7 @@ img/
 *.css
 images/
 lib/
+modelo/fotos/
 *.csv
 [imap]
 folder = "[Gmail]/Drafts"

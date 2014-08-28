@@ -15,7 +15,7 @@ $Observacion = $_REQUEST['Observacion'];
 $Rh= $_REQUEST['Rh'];
 $Ciudad= $_REQUEST['Ciudad'];
 
-if (!isset($_REQUEST["foto"]))
+if (isset($_REQUEST["foto"]))
 {
 $tipo =  explode('/',$_FILES["foto"]["type"]);
 copy($_FILES["foto"]["tmp_name"],"fotos/".$Identificacion.".".$tipo[1]);

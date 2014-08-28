@@ -49,7 +49,7 @@ $sede=$_SESSION['sede'];
 		var Estado= [
 		    {Estadoid:'1',name:'Inscripcion'},
 		    {Estadoid:'2',name:'Admision'}
-		];	
+		];
 		var url;
 
 
@@ -132,14 +132,37 @@ $sede=$_SESSION['sede'];
 				});
 			}
 		}
+        //correo masivo
+        function getSelections(){
+			var ids = [];
+			var rows = $('#dg').datagrid('getSelections');
+			for(var i=0; i<rows.length; i++){
+				ids.push(rows[i].id);
+			}
+			//alert(ids.join('\n'));
+                var idUser = "<?php echo $idUser; ?>";
+				$.post('correoMasivo.php?idUser='+idUser,{ids:ids},function(result){
+								if (result.success){
+									$('#dg').datagrid('reload');	// reload the user data
+                                    $.messager.show({
+                                    title: 'Datos',
+									msg: 'Fianlizo el envio de correos'
+                                    });
+								} else {
+									$.messager.show({	// show error message
+										title: 'Error',
+                                        msg: 'No se pudo enviar correctamente lso correos'
+									});
+								}
+							},'json');
+		}
+        
+        
 		//Envia email cuando se selecciona un  estudiante
 		function EmailEstudiante(){
 			var row = $('#dg').datagrid('getSelected');
 			if (row){
-				//$('#dlg').dialog('open').dialog('setTitle','Enviar Correo');
-                var myusername = "<?php echo $myusername; ?>";
-                var sede = "<?php echo $sede; ?>";
-                var idUser = "<?php echo $idUser; ?>"; 
+                var idUser = "<?php echo $idUser; ?>";
 				alert('Se esta enviando el correo a  '+row.Email);
 				$('#fm').form('load',row);
 				$.post('mail.php?idUser='+idUser,{id:row.id,Email:row.Email,cPrograma:row.cPrograma},function(result){
@@ -195,14 +218,7 @@ $sede=$_SESSION['sede'];
                     oPrograma: $('#oPrograma').val(),
 			    });		
 		}
-		function getSelections(){
-			var ids = [];
-			var rows = $('#dg').datagrid('getSelections');
-			for(var i=0; i<rows.length; i++){
-				ids.push(rows[i].id);
-			}
-			alert(ids.join('\n'));
-		}
+
 
 	</script>
 
@@ -223,6 +239,7 @@ $sede=$_SESSION['sede'];
 			 url="estudiante.php?sede=<?php echo $sede ?>"
 			toolbar="#toolbar" pagination="true"
 			rownumbers="true" fitColumns="true"  pageSize="20" pageList="[20,50,100,500]">
+<!--        singleSelect="true"-->
 		<thead>
 			<tr>
 				<th field="Identificacion" width="50" sortable="true">Identificacion</th>
@@ -258,7 +275,7 @@ $sede=$_SESSION['sede'];
 		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Agregar</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-mail" plain="true" onclick="EmailEstudiante()">Enviar correo al aspirante</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="desconectar()">Desconectar</a>
-		<a href="#" class="easyui-linkbutton" onclick="getSelections()">Correo Masivo</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="getSelections()">Correo Masivo</a>
 
 
             <div id="tb" style="padding:3px">

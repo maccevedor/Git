@@ -44,11 +44,7 @@ $statement->execute();
 $row = $statement->fetch(); 
 $url= $row["Url"];
 
-$fchRespuesta=date('Y-m-d H:i:s');
-$sql="update estudiante set FchRespuesta = '$fchRespuesta' where Id=$id" ;
-$statement = $conex->prepare($sql);
-$statement->execute();
-$row = $statement->fetch();
+
 
 $destino=$myusername."@umb.edu.co";
 $asesor=$myusername;
@@ -167,6 +163,11 @@ if ($recipients = $swift->send($message, $failures))
 {
  echo json_encode(array('success'=>true));
  //echo "<script languaje='javascript'>alert('se correctamente envio el correo');</script>";
+    $fchRespuesta=date('Y-m-d H:i:s');
+    $sql="update estudiante set FchRespuesta = '$fchRespuesta' where Id=$id" ;
+    $statement = $conex->prepare($sql);
+    $statement->execute();
+    $row = $statement->fetch();
 } else {
 	 echo json_encode(array('msg'=>'No se pudo enviar el correo'));
  ///echo "There was an error:\n";

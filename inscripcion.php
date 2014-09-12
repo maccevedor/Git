@@ -6,12 +6,12 @@ $day=date('Y-m-d H:i:s');
 $fuente= $_REQUEST['key'];
 include('view/header.php');
 ?>
-
 	<body>
-	<?php
-	if($fuente=="Indexcol"){
+<?php
+	if($fuente=="Indexcol")
+	{
 	include('lib/Indexcol.php');
-}
+	}
 ?>
     <div class="container">
       <div class="row">

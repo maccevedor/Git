@@ -5,57 +5,27 @@
  //require_once('logout.php');
  $myusername = $_SESSION['login_user'];
  $idUser=$_SESSION['id'];
- //echo $idUser;
- //echo $myusername;
-$sede=$_SESSION['sede'];
+ $sede=$_SESSION['sede'];
  ?>
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="shortcut icon" href="../img/favicons/favicon.ico">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<!-- <meta name="keywords" content="jquery,ui,easy,easyui,web"> -->
 	<meta name="description" content="easyui help you build your web page easily!">
-	<title></title>
+	
+	<title>UMBVIRTUAL</title>
 	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
 	<link rel="stylesheet" type="text/css" href="../css/icon.css">
-
+	
 	<script type="text/javascript" src="datagrid-filter.js"></script>
-
-	<style type="text/css">
-		#fm{
-			margin:0;
-			padding:10px 30px;
-		}
-		.ftitle{
-			font-size:14px;
-			font-weight:bold;
-			color:#666;
-			padding:5px 0;
-			margin-bottom:10px;
-			border-bottom:1px solid #ccc;
-		}
-		.fitem{
-			margin-bottom:5px;
-		}
-		.fitem label{
-			display:inline-block;
-			width:80px;
-		}
-	</style>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
 	<script type="text/javascript">
-		var Estado= [
-		    {Estadoid:'1',name:'Inscripcion'},
-		    {Estadoid:'2',name:'Admision'}
-		];
-		var url;
-
-
-
+		
 		//Esta funcion se encarga de ocultar las funciones de administrador
-		//
 		function ocultar()
 			{
 			document.getElementById('master').style.display='none';
@@ -71,9 +41,13 @@ $sede=$_SESSION['sede'];
 		//edita la informacion basica del estudiante
 		function editUser(){
 			var row = $('#dg').datagrid('getSelected');
+			 //alert (row.Ciudad);
 			if (row){
 				$('#dlg').dialog('open').dialog('setTitle','Editar Usuario');
 				$('#fm').form('load',row);
+				valorfoto = 'fotos/'+row.Identificacion+'.jpeg';
+				//alert(valorfoto);
+				$("#mostrarfoto").attr('src',valorfoto);
 				url = 'modificarEstudiante.php?id='+row.id;
 			}
 		}
@@ -155,8 +129,7 @@ $sede=$_SESSION['sede'];
 									});
 								}
 							},'json');
-		}
-        
+		}  
         
 		//Envia email cuando se selecciona un  estudiante
 		function EmailEstudiante(){
@@ -203,16 +176,12 @@ $sede=$_SESSION['sede'];
 			}	
 			
 
-		function informacion(){
-			
-
+		function informacion(){		
 			var row = $('#dg').datagrid('getSelected');
 			url = 'informeEstudiante.php?id='+row.id;
-			window.open(url,'_blank');
-					
+			window.open(url,'_blank');					
 		}	
 		function organizar(){
-			
 			 $('#dg').datagrid('load',{
 			        estado: $('#organizar').val(),
                     oPrograma: $('#oPrograma').val(),
@@ -221,7 +190,6 @@ $sede=$_SESSION['sede'];
 
 
 	</script>
-
 </head>
 
         <div id="logo">
@@ -253,9 +221,9 @@ $sede=$_SESSION['sede'];
 				<th field="Observacion" width="100">Observacion</th>
 				<th field="Fuente" width="100">Fuente</th>
 				<th field="umb" width="100">Estado</th>
+				<th field="Municipio" width="100">Ciudad</th>
+
 				<!-- <th field="Estado" width="100">Estado1</th> -->
-
-
 				<!-- <th field="cPrograma" width="100"></th> -->
 			</tr>
 		</thead>
@@ -276,7 +244,6 @@ $sede=$_SESSION['sede'];
 		<a href="#" class="easyui-linkbutton" iconCls="icon-mail" plain="true" onclick="EmailEstudiante()">Enviar correo al aspirante</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="desconectar()">Desconectar</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="getSelections()">Correo Masivo</a>
-
 
             <div id="tb" style="padding:3px">
 			    <span>Identificacion:</span>
@@ -310,11 +277,14 @@ $sede=$_SESSION['sede'];
 
 	<div id="dlg" class="easyui-dialog" style="width:600px;height:600px;padding:20px 30px"
 			closed="true" buttons="#dlg-buttons">
-		<div class="ftitle">Información</div>
+		<div class="ftitle">Información Del Estudiante</div>
+
+
 		<form id="fm" method="post" novalidate enctype="multipart/form-data">
 			<div class="fitem">
 				<label>Identificacion:</label>
 				<input name="Identificacion" class="easyui-validatebox" required="true">
+
 			</div>
 			<div class="fitem">
 				<label>Nombres:</label>
@@ -332,19 +302,20 @@ $sede=$_SESSION['sede'];
 				<label>Email:</label>
 				<input name="Email" class="easyui-validatebox" validType="email">
 			</div>
-			<label>Ciudad:</label>
 			<div class="fitem">
-                              <select id="Ciudad" name="Ciudad" class="span12" >
-                                <option value="">Selecciona una ciudad</option>
-									                                <?php
-									$ciudades = dameCiudad();
+			<label>Ciudad:</label>
 
-									foreach($ciudades as $indice => $registro){
-									echo "<option value=".$registro['id'].">".$registro['municipio'].' -'.$registro['estado']."</option>";
-									}
-									?>
-                              </select>
-                            </div>
+                 <select  name="cCiudad" id="cCiudad" 	 >
+                   <option value="">Selecciona una ciudad</option>
+				                                <?php
+				$ciudades = dameCiudad();
+
+				foreach($ciudades as $indice => $registro){
+				echo "<option value=".$registro['id'].">".$registro['municipio'].' -'.$registro['estado']."</option>";
+				}
+				?>
+                 </select>
+              </div>
 			<div class="fitem">
 				<label>Programa:</label>
 				<!-- <input name="Programa" class="easyui-validatebox" required="true"> -->
@@ -358,10 +329,7 @@ $sede=$_SESSION['sede'];
 							}
 						?>
 					</select>
-
 			</div>
-
-
 			<div class="fitem">
 				<label>Observacion:</label>
 				<input name="Observacion" class="easyui-validatebox" validType="text">
@@ -409,7 +377,9 @@ $sede=$_SESSION['sede'];
             </div>
 			<div class="fitem">
 				<label>Foto:</label>
-				<input type="file" id="foto" name="foto" class="easyui-validatebox" data-max-size="2048" accept="image/*,.dmg" >
+				<img id="mostrarfoto" class="mostrarfoto" name="mostarfoto" src="" alt="Smiley face" height="60" width="60"><br><br>
+				<!-- <input type="file" id="foto" name="foto" class="easyui-validatebox" data-max-size="2048" accept="image/*,.dmg" > -->
+				<input type="file" id="foto" name="foto" class="easyui-validatebox" data-max-size="2048" accept="image/*" >
 			</div>
 
 			<input type="hidden" name="User" class="easyui-validatebox"  value="<?php echo $myusername ?>">

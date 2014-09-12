@@ -39,7 +39,7 @@
 						$sql->execute();
 						$result=$sql->fetchAll(PDO::FETCH_ASSOC);
 						$results["total"]=$result[0]["total"];
-						$consulta=("select e.Id as id,e.Identificacion as Identificacion,e.Nombre as Nombre,e.Apellido as Apellido,e.Telefono as Telefono,e.Email as Email,p.Programa as Programa,e.Fch as Fch,e.FchRespuesta as FchRespuesta , e.programa as cPrograma ,e.umb , e.Observacion,e.Fuente,CASE e.Estado WHEN 1 THEN 'Inscripcion' WHEN 2 THEN 'Admisiones'  else Estado end as Estado from estudiante e  inner join municipios  muni on  e.Ciudad =muni.id inner join  programa p on e.Programa=p.id where (e.fuente $SqlFuente or muni.relacion $SqlEstados) and Estado='$estado' and e.programa='$oPrograma' and muni.relacion $SqlEstados order by $sort $order limit $offset,$rows");
+						$consulta=("select e.Id as id,e.Identificacion as Identificacion,e.Nombre as Nombre,e.Apellido as Apellido,e.Ciudad as cCiudad ,e.Telefono as Telefono,e.Email as Email,p.Programa as Programa,e.Fch as Fch,e.FchRespuesta as FchRespuesta , e.programa as cPrograma ,e.umb , e.Observacion,e.Fuente,CASE e.Estado WHEN 1 THEN 'Inscripcion' WHEN 2 THEN 'Admisiones'  else Estado end as Estado, muni.municipio as Municipio from estudiante e  inner join municipios  muni on  e.Ciudad =muni.id inner join  programa p on e.Programa=p.id where (e.fuente $SqlFuente or muni.relacion $SqlEstados) and Estado='$estado' and e.programa='$oPrograma' and muni.relacion $SqlEstados order by $sort $order limit $offset,$rows");
                         //echo $consulta;
 						$sql=$conex->query($consulta);
                         $sql->execute();
@@ -63,7 +63,7 @@
 						$result=$sql->fetchAll(PDO::FETCH_ASSOC);
 						$results["total"]=$result[0]["total"];
 						
-						$sql=$conex->query("select e.Id as id,e.Identificacion as Identificacion,e.Nombre as Nombre,e.Apellido as Apellido,e.Telefono as Telefono,e.Email as Email,p.Programa as Programa,e.Fch as Fch,e.FchRespuesta as FchRespuesta , e.programa as cPrograma ,e.umb , e.Observacion,e.Fuente,CASE e.Estado WHEN 1 THEN 'Inscripcion' WHEN 2 THEN 'Admisiones'  else Estado end as Estado from estudiante e  inner join municipios  muni on  e.Ciudad =muni.id inner join  programa p on e.Programa=p.id where (e.fuente $SqlFuente or muni.relacion $SqlEstados) and Estado='$estado' order by $sort $order limit $offset,$rows");
+						$sql=$conex->query("select e.Id as id,e.Identificacion as Identificacion,e.Nombre as Nombre,e.Apellido as Apellido,e.Ciudad as cCiudad ,e.Telefono as Telefono,e.Email as Email,p.Programa as Programa,e.Fch as Fch,e.FchRespuesta as FchRespuesta , e.programa as cPrograma ,e.umb , e.Observacion,e.Fuente,CASE e.Estado WHEN 1 THEN 'Inscripcion' WHEN 2 THEN 'Admisiones'  else Estado end as Estado, muni.municipio as Municipio from estudiante e  inner join municipios  muni on  e.Ciudad =muni.id inner join  programa p on e.Programa=p.id where (e.fuente $SqlFuente or muni.relacion $SqlEstados) and Estado='$estado' order by $sort $order limit $offset,$rows");
 						//echo $sql;
                         //exit();
                         $sql->execute();
@@ -88,7 +88,7 @@
 						$results["total"]=count($result);
 
 
-						$sql=$conex->query("select e.Id as id,e.Identificacion as Identificacion,e.Nombre as Nombre,e.Apellido as Apellido,e.Telefono as Telefono,e.Email as Email,p.Programa as Programa,e.Fch as Fch,e.FchRespuesta as FchRespuesta , e.programa as cPrograma ,e.umb , e.Observacion,e.Fuente,CASE e.Estado WHEN 1 THEN 'Inscripcion' WHEN 2 THEN 'Admisiones'  else Estado end as Estado from estudiante e  inner join municipios  muni on  e.Ciudad =muni.id inner join  programa p on e.Programa=p.id where Estado='$estado' and muni.relacion $SqlEstados and" . $where . " limit $offset,$rows");
+						$sql=$conex->query("select e.Id as id,e.Identificacion as Identificacion,e.Nombre as Nombre,e.Apellido as Apellido,e.Ciudad as cCiudad , e.Telefono as Telefono,e.Email as Email,p.Programa as Programa,e.Fch as Fch,e.FchRespuesta as FchRespuesta , e.programa as cPrograma ,e.umb , e.Observacion,e.Fuente,CASE e.Estado WHEN 1 THEN 'Inscripcion' WHEN 2 THEN 'Admisiones'  else Estado end as Estado, muni.municipio as Municipio from estudiante e  inner join municipios  muni on  e.Ciudad =muni.id inner join  programa p on e.Programa=p.id where Estado='$estado' and muni.relacion $SqlEstados and" . $where . " limit $offset,$rows");
 						$rows=$sql->fetchAll(PDO::FETCH_ASSOC);
 
 						foreach($rows as $row){

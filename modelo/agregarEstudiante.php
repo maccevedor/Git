@@ -1,8 +1,8 @@
 <?php
 
 $day=date('Y-m-d H:i:s');
-	require_once("conexion.php");
-	$conex = conectaBaseDatos();
+require_once("conexion.php");
+$conex = conectaBaseDatos();
 
 $Identificacion = $_REQUEST['Identificacion'];
 $Nombre = $_REQUEST['Nombre'];
@@ -13,9 +13,10 @@ $Programa = $_REQUEST['cPrograma'];
 $Fuente = $_REQUEST['Fuente'];
 $Observacion = $_REQUEST['Observacion'];
 $Rh= $_REQUEST['Rh'];
-$Ciudad= $_REQUEST['Ciudad'];
+$Ciudad= $_REQUEST['cCiudad'];
 
-if (isset($_REQUEST["foto"]))
+if (empty($_REQUEST["foto"]))
+{}else
 {
 $tipo =  explode('/',$_FILES["foto"]["type"]);
 copy($_FILES["foto"]["tmp_name"],"fotos/".$Identificacion.".".$tipo[1]);

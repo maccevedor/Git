@@ -274,6 +274,7 @@ return false;
     <div id="small-nav">
       <div id="container-menu">
         <a id="" href="http://umbvirtual.edu.co/">Inicio</a>
+       <!--  <a href="#inscripcion-model" class="Anchor">Ir al formualrio</a> -->
       </div>
     </div>
     <!-- tool bar -->
@@ -286,9 +287,10 @@ return false;
     </div>
     <div class="jumbotron franja-dark">
       <div class="container">
-        <center>
-          <p>La Educación de la UMB Virtual está basada en el “aprendizaje feliz”, donde se brinda al estudioso un escenario motivacional-multimedial que permite disfrutar el proceso educativo, desde la autogestión, sin limitarse a recursos textuales en PDF.</p>
-        </center>
+Nuestros recursos tecnológicos están basados en tecnologías web y en consecuencia los requisitos mínimos para el acceso y uso de ellos se basa igualmente en los mínimos actuales que manejan los proveedores de internet y fabricantes de dispositivos.  La información correspondiente a los requisitos tecnológicos y de conectividad necesarios para cursar un programa en modalidad virtual son los siguientes:<br>
+<h3>A nivel de máquina:</h3> Se debe contar con dispositivos capaces de acceder a internet tales como computadoras, smartphones, tablets, etc.  Sin embargo, es importante tener en cuenta que para el desarrollo de ciertas actividades de evalaución y para los procesos de comunicación con compañeros y docentes, es necesario que los dispositivos utilizados, cuenten con micrófono y cámara de video, ya sea integrados o como accesorios. 
+<h3>A nivel de software:</h3> Es fundamental que los dispositivos cuenten con un navegador y un lector de documentos PDF. En algunas ocasiones también debe correr flash player; esto solo para algunos recursos construidos bajo esa tecnología. La plataforma y los recursos funcionan eficientemente sobre el estándar HTML5 por lo que sugerimos utilizar navegadores de última generación y actualizados por ejemplo Google Chrome y Firefox.  Esto no quiere decir que no se pueda acceder desde otro tipo de navegador como es Internet Explorer, pero en ese caso debe ser la última versión y que respete el estándar.
+<h3>A nivel de conectividad:</h3> Los requisitos mínimos están sujetos a los mínimos que ofrecen los proveedores de internet, por recomendación sugerimos desde 1 Mbps, aunque se puede navegar con anchos de banda inferiores sin embargo la experiencia en el uso se puede afectar ya que nuestros recursos y contenidos son ricos en video, animaciones y multimedia.
       </div>
     </div>
   </header>
@@ -1183,9 +1185,12 @@ document.write('<script src="js/include/responsive-tables.min.js"><\/script>');
     });
   </script>
   <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+
 </script>
+
 <script type="text/javascript">
 _uacct = "UA-106117-1";
 urchinTracker();
 </script>
+<script src="js/anchor" type="text/javascript"></script>
 </html>

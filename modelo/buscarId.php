@@ -1,7 +1,6 @@
 <?php
 require_once("funciones.php");
 
-
 if(isset($_POST['identificacion'])){
 	
 	$identificacion = dameIdentificacion($_POST['identificacion']);

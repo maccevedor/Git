@@ -1,17 +1,14 @@
 <?php 
-
 include("../clases/clsInscripcion.php"); 
 include("../clases/clsEntrevista.php");
 include("../clases/clsAcademica.php"); 
 include("../modelo/conexion.php"); 
 include("../modelo/funciones.php"); 
 
-  $conex = conectaBaseDatos();
-
+    $conex = conectaBaseDatos();
     $names =array($_REQUEST['nombre'],$_REQUEST['apellido']);
     $nombre=ucfirst($names[0]);
     $apellido=ucfirst($names[1]);
-      
 
     //crear el objeto con base en la clase 
     $objCon=new clsInscripcion(); 
@@ -33,14 +30,11 @@ include("../modelo/funciones.php");
     $objCon->setFuente($_REQUEST['fuente']);
     $objCon->setFch($_REQUEST['fch']);
 
-    //$objCon->guardar($conex);  
+    //Toma el ultimo id insertado para ser ulizado como llave foreana de las otras tablas
     $insertId = $objCon->guardar($conex); 
 
-
-
-    //crear el objeto con base en la clase 
+    //crear el objeto para guarda la parte 2 de la entrevista
     $objEnt=new clsEntrevista(); 
-
     $objEnt->setProgramaAcademico($_REQUEST['programaAcademico']); 
     $objEnt->setExperiencia($_REQUEST['experiencia']); 
     $objEnt->setVirtual($_REQUEST['virtual']); 
@@ -57,32 +51,20 @@ include("../modelo/funciones.php");
     $objEnt->setCargo($_REQUEST['cargo']); 
     $objEnt->setIdentificacion($_REQUEST['identificacion']);
     $objEnt->setInsertId($insertId);
-       
-    //metodo guardar 
     $objEnt->guardar($conex);   
 
-
+    //Valida si la persona trabaja
     $trabaja= $_REQUEST['trabaja'];
-    //echo $trabaja ;
-
     if ($trabaja=="option1") {
-      # code...
-      //echo "trabaja";
-
       $objEnt->guardar2($conex);   
     }else{
-
-      //echo "no trabaja";
       $objEnt->guardar3($conex);  
     }
 
-    //crear el objeto con base en la clase 
-    
-    
-
+    //crear el objeto con la informacion academica del estudiantes
     $objAca=new clsAcademica(); 
 
-  for($i = 0; $i < count($_REQUEST['nivel']); $i++) {
+    for($i = 0; $i < count($_REQUEST['nivel']); $i++) {
 
     $objAca->setNivel($_REQUEST['nivel'][$i]); 
     $objAca->setTitulo($_REQUEST['titulo'][$i]); 
@@ -90,10 +72,9 @@ include("../modelo/funciones.php");
     $objAca->setFchEgreso($_REQUEST['fchEgreso'][$i]); 
     $objAca->setIdentificacion($_REQUEST['identificacion']);
     $objAca->setInsertId($insertId);
+    $objAca->guardar($conex);
 
-
-    $objAca->guardar($conex);   
-
+    //Recuperamos los datos para enviarlos en el correo
     $nivelP = (isset($_REQUEST['nivel'][$i])) 
     ? trim(strip_tags($_REQUEST['nivel'][$i]))
     : ""; 
@@ -114,8 +95,6 @@ include("../modelo/funciones.php");
   }
 
     //Recuperamos los datos para enviarlos en el correo
-
-
     $identificacionP = (isset($_REQUEST['identificacion'])) 
     ? trim(strip_tags($_REQUEST['identificacion']))
     : ""; 
@@ -166,22 +145,22 @@ include("../modelo/funciones.php");
     : ""; 
      $umbP = (isset($_REQUEST['umb'])) 
     ? trim(strip_tags($_REQUEST['umb']))
-    : ""; 
+    : "";
+    $ciudadC = (isset($_REQUEST['ciudad'])) 
+    ? trim(strip_tags($_REQUEST['ciudad']))
+    : "";  
 
 
 
   $sql="select Precio,Inscripcion,Programa from programa where id='$programaP'";
-  //$nombrePrograma=mysql_fetch_array(mysql_query($sql,$conexion));
-  //$precio = $nombrePrograma[0];
-
   $statement = $conex->prepare($sql);
   $statement->execute();
-  $row = $statement->fetch(); // Use fetchAll() if you want all results, or just iterate over the statement, since it implements Iterator
+  $row = $statement->fetch();
   $inscripcion= $row["Inscripcion"];
   $precio= $row["Precio"];
   $Nprograma= $row["Programa"];  
-  
-  //operaciones y datos para pago en linea
+
+  //operaciones y datos para pago en linea (no esta funcionando en estos momentos)
   $descripcion = "pago en linea";
   $refVenta = "INS-1000002";
   $baseDevolucionIva = $precio * 0.84 ;
@@ -194,31 +173,40 @@ include("../modelo/funciones.php");
   $emailComprador = "maccevedor@gmail.com";
   $firma = md5($key."~".$usuarioId."~".$refVenta."~".$valor."~".$moneda);
   
+  $sql="select e.id from municipios m
+  inner join estados e on e.id=m.relacion
+  where m.id='$ciudadC'";
+  $statement = $conex->prepare($sql);
+  $statement->execute();
+  $row = $statement->fetch();
+  $ciudadE= $row["id"];
 
-
-
-  if($programaP =='1' || $programaP =='2' || $programaP =='5'|| $programaP =='8' || $programaP =='9' || $programaP =='12' || $programaP =='13' || $programaP =='14' || $programaP =='19'){
-    $destino ="claudia.santacruz@umb.edu.co";
-
-  }
-  else
-  {
-     $destino="Liset.abreu@umb.edu.co";
-  }
-
-
-//metodo guardar
+  //Esta condicion es debido  al municipio donde vive el futuro estudioso 
+  if($ciudadE==776)
+    {
+      $destino ="laura.toro@umb.edu.co";
+      $coordinador ="johanna.forero@umb.edu.co";
+    }else{  
+      if($programaP =='1' || $programaP =='2' || $programaP =='5'|| $programaP =='8' || $programaP =='9' || $programaP =='12' || $programaP =='13' || $programaP =='14' || $programaP =='19'){
+        $destino ="claudia.santacruz@umb.edu.co";
+        $coordinador ="adriana.casas@umb.edu.co";
+      }
+      else
+      {
+         $destino="Liset.abreu@umb.edu.co";
+         $coordinador ="adriana.casas@umb.edu.co";
+      }
+    }
    
 //Enviarle al usuario que fue correcta la inscripcion
-
-
 
 include_once "../lib/Swift/swift_required.php";
 
 $subject = 'Inscripción correcta';
 $from = array('uvirtual@umb.edu.co' =>'UMB Virtual');
 $to = array(
- $emailP  => 'Aspirante',
+ //$emailP  => 'Aspirante',
+ $coordinador  => 'Coordinador',
  $destino => 'Asesor UMB virtual'
 );
 
@@ -268,17 +256,6 @@ if ($recipients = $swift->send($message, $failures))
  echo "Se presento un error al realizar el envio del correo por favor comunicarse al :\n";
  print_r($failures);
 }
-
-
-
-
-
-  
- 
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -889,8 +866,5 @@ document.getElementById('fchMatricula').style.display='none';
 
 
 </script> 
-
-<!-- Mirrored from bootstraphunter.com/jarvisadmin/wizard.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 06 Mar 2014 15:18:52 GMT -->
-
 </body>
 </html>

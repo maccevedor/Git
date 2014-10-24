@@ -205,7 +205,7 @@ include_once "../lib/Swift/swift_required.php";
 $subject = 'Inscripción correcta';
 $from = array('uvirtual@umb.edu.co' =>'UMB Virtual');
 $to = array(
- //$emailP  => 'Aspirante',
+ $emailP  => 'Aspirante',
  $coordinador  => 'Coordinador',
  $destino => 'Asesor UMB virtual'
 );

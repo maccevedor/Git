@@ -7,8 +7,11 @@ $fuente= $_REQUEST['key'];
 include('view/header.php');
 ?>
 	<body>
+
+
+
 <?php
-	if($fuente=="Indexcol")
+	if($fuente=="Indexcol" or $fuente=="Youtube" or $fuente=="Facebook" or $fuente=="linkedin")
 	{
 	include('lib/Indexcol.php');
 	}
@@ -132,7 +135,7 @@ include('view/header.php');
 				<div class="col-md-4">
 					• Afiliado a Compensar descuento del 8%<br><br>
 					• Afiliado a Colsubsidio descuento del 8%<br><br>
-					• Afiliado a Porvenir descuento del 8%<br><br>
+					• Afiliado a Porvenir descuento del 8%<br>(solo Pregrados)<br><br>
 					• Afiliado al Fondo Nacional del Ahorro descuento del 8%<br><br>
 					• Beneficiarios de Somec 8%
 				</div>

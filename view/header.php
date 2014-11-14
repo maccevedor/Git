@@ -1,3 +1,13 @@
+<?php
+error_reporting(0);
+include('modelo/conexion.php');
+include('modelo/funciones.php');
+$day=date('Y-m-d H:i:s');
+$fuente= $_REQUEST['key'];
+$Manager="";
+$Conversion="";
+$Indexcol="";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,26 +26,47 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/main.css" rel="stylesheet">
+    
+    <?php
+  if($fuente=="Indexcol" or $fuente=="Youtube" or $fuente=="Facebook" or $fuente=="Linkedin")
+  {
+  include('lib/Indexcol.php');
+  echo $Indexcol;
+  }
+    ?>
+
+    </head>
       
+    <body>
+
+<?php
+  if($fuente=="Indexcol" or $fuente=="Youtube" or $fuente=="Facebook" or $fuente=="Linkedin")
+  {
+  include('lib/Indexcol.php');
+  echo $Manager;
+  }
+?>
+
+
   <header>
 
-  	<div class="container">
+    <div class="container">
     <!-- Logo -->
-		<div class="row">
+    <div class="row">
                 <div id="logo">
                     <div class="logo" id="virtual">
                             <a href="http://umbvirtual.edu.co/"><img src="http://umbvirtual.edu.co//wp-content/uploads/2014/01/logo2.png" width="365" height="70" border="0" alt="UMB Virtual" class="normal-logo"></a>
                         </div>
-			</div>
-	    </div>
-	</div>
+      </div>
+      </div>
+  </div>
     <!-- Menu -->
     <div id="small-nav">
       <div id="container-menu">
       <ul>
-    	    <li><a id="" href="http://umbvirtual.edu.co">Inicio</a></li>
-    	    <li><a href="#formulario" class="Anchor" title="">Formulario</a></li>
-	        <li><a href="#beneficios" class="Anchor" title="">Beneficios y descuentos</a></li>
+          <li><a id="" href="http://umbvirtual.edu.co">Inicio</a></li>
+          <li><a href="#formulario" class="Anchor" title="">Formulario</a></li>
+          <li><a href="#beneficios" class="Anchor" title="">Beneficios y descuentos</a></li>
        </ul>
       </div>
     </div>
@@ -54,5 +85,4 @@
         </center>
       </div>
     </div>
-  </header>
- 
+   </header>

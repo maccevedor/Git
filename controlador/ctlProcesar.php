@@ -189,12 +189,12 @@ include("../modelo/funciones.php");
     }else{  
       if($programaP =='1' || $programaP =='2' || $programaP =='5'|| $programaP =='8' || $programaP =='9' || $programaP =='12' || $programaP =='13' || $programaP =='14' || $programaP =='19'){
         $destino ="claudia.santacruz@umb.edu.co";
-        $coordinador ="adriana.casas@umb.edu.co";
+        $coordinador ="tatiana.nunez@umb.edu.co";
       }
       else
       {
          $destino="Liset.abreu@umb.edu.co";
-         $coordinador ="adriana.casas@umb.edu.co";
+         $coordinador ="tatiana.nunez@umb.edu.co";
       }
     }
    

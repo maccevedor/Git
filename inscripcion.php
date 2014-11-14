@@ -1,21 +1,7 @@
 <?php
-error_reporting(0);
-include('modelo/conexion.php');
-include('modelo/funciones.php');
-$day=date('Y-m-d H:i:s');
-$fuente= $_REQUEST['key'];
-include('view/header.php');
+include('view/header.php'); 
 ?>
-	<body>
 
-
-
-<?php
-	if($fuente=="Indexcol" or $fuente=="Youtube" or $fuente=="Facebook" or $fuente=="linkedin")
-	{
-	include('lib/Indexcol.php');
-	}
-?>
     <div class="container">
       <div class="row">
         <img src="img/header.jpg" alt="Inscríbete" align="center" />

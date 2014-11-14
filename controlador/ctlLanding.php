@@ -3,6 +3,16 @@ include("../clases/clsLanding.php");
 include("../modelo/conexion.php"); 
 include("../modelo/funciones.php"); 
     //crear el objeto con base en la clase 
+$fuente= $_REQUEST['fuente'];
+$Indexcol="";
+$Conversion="";
+$Manager="";
+
+    if($fuente=="Indexcol" or $fuente=="Youtube" or $fuente=="Facebook" or $fuente=="Linkedin")
+    {
+    include('../lib/Indexcol.php');    
+    }
+
 
   $conex = conectaBaseDatos();
 
@@ -141,6 +151,7 @@ if ($correoP=="" && $telefonoP=="") {
                         # code...
                 } 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -167,21 +178,17 @@ if ($correoP=="" && $telefonoP=="") {
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+  
+    <?php echo $Indexcol; ?>        
+
   </head>
 
   <body>
-		  <!-- Google Tag Manager -->
-		<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TX8LGP"
-		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-		'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-TX8LGP');</script>
-		<!-- End Google Tag Manager -->
 
-
-    <div class="navbar">
+    <?php echo $Manager; ?>       
+          
+   <div class="navbar">
         <div class="container">
             <div id="cabezote">
                 <div class="umb"><img src="../img/escudoUMB.png"></div>
@@ -206,6 +213,9 @@ if ($correoP=="" && $telefonoP=="") {
                     Si estás viendo esta página, quiere decir que el proceso de registro para nuevos aspirantes ha sido completado de forma exitosa.<br><br>
 
                     Nuestras asesoras se estarán comunicando contigo dentro de los siguientes días.
+    
+                     <?php echo $Conversion; ?>   
+
                 </div>
             </div>
         </div>

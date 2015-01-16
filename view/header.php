@@ -33,6 +33,18 @@ $Indexcol="";
   include('lib/Indexcol.php');
   echo $Indexcol;
   }
+  if($fuente=="Tolima" )
+    {
+    $direccion="Edificio Fontainebleau, Cra 5ª No. 37 Bis Local 101";
+    $ciudad="Ibague,Colombia";
+    $telefono="Teléfono (8) 2669053 ";
+    }else
+        {
+    $direccion="Km 27 vía Cajicá (+57 1) 546 06 00 Ext. 1470 - 1473.";
+    $ciudad="Cajicá, Colombia.";
+    $telefono="Teléfono: (+57 1) 546 06 00 Ext. 1470 - 1473";
+    }
+
     ?>
 
     </head>

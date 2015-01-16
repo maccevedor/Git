@@ -33,7 +33,7 @@ function damePrograma($formacion = ''){
 	$consulta = "SELECT * FROM programa";
 	
 	if($formacion != ''){
-		$consulta .= " WHERE formacion = :formacion";
+		$consulta .= " WHERE formacion = :formacion and asesor<>'0'";
 	}
 	
 	$conex = conectaBaseDatos();
@@ -141,7 +141,7 @@ class ElementoAutocompletar {
 
 function programa(){
 	$resultado = false;
-	$consulta = "SELECT * FROM programa";
+	$consulta = "SELECT * FROM programa WHERE asesor<>'0'";
 	
 	$conex = conectaBaseDatos();
 	$sentencia = $conex->prepare($consulta);

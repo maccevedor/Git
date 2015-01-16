@@ -53,7 +53,7 @@ include('view/header.php');
 					<select name="programa"  id="programa" class="span12">
 																			<option value="0">- Seleccione una Programa -</option>
 																				<?php
-																					$categorias = damePrograma();
+																					$categorias = programa();
 																		
 																					foreach($categorias as $indice => $registro){
 																					echo "<option value=".$registro['id'].">".$registro['Programa']."</option>";
@@ -149,7 +149,11 @@ include('view/header.php');
 						<a href="http://umbvirtual.edu.co/" target="_self" title="UMB Virtual"><img src="http://umbvirtual.edu.co//wp-content/uploads/2014/06/logo-footer.png" border="0"></a>
 						<br><br>
 						© 2014 UMB Virtual<br>
-						Teléfono: (+57 1) 546 06 00 Ext. 1470 - 1473<br>
+						<?php 
+						echo $direccion."<br>";
+						echo $ciudad."<br>";
+						echo $telefono."<br>";
+						  ?>
 						Todos los derechos reservados.
 					</div>
 					<div class="col-md-6">

@@ -508,4 +508,4 @@
 			return getFilterComponent(jq[0], field);
 		}
 	});
-})(jQuery);
+});

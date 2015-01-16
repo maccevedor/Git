@@ -6,6 +6,27 @@
  $myusername = $_SESSION['login_user'];
  $idUser=$_SESSION['id'];
  $sede=$_SESSION['sede'];
+
+
+	$conex = conectaBaseDatos();
+
+ 		$sql="select count(*) as total from estudiante where contacto='Pendiente Contactar'";
+ 		//echo $sql;
+		$contactados = $conex->prepare($sql);
+		$contactados->execute();
+		$row = $contactados->fetch();
+		//echo $row['total'];
+		if($row > 0){
+
+			$llamar='Recuerda que tienes '.$row['total'].' estudiosos por contactar';
+			//echo $llamar;
+		}else
+		{
+			$llamar='Felicidades estas al dia';
+			//echo $llamar;
+
+   			
+		}
  ?>
 <!DOCTYPE html>
 <html>
@@ -24,6 +45,16 @@
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
 	<script type="text/javascript">
+
+		function llamados () {
+			$('#dlg').dialog('close');		// close the dialog
+						$('#dg').datagrid('reload');	// reload the user data
+						$.messager.show({
+							title: 'Datos',
+							msg: '<?php echo $llamar; ?>'
+						});
+		}
+
 		
 		//Esta funcion se encarga de ocultar las funciones de administrador
 		function ocultar()
@@ -188,7 +219,9 @@
 			    });		
 		}
 
-
+		$(document).ready(function () {
+			llamados();
+		});
 	</script>
 </head>
 
@@ -222,7 +255,8 @@
 				<th field="Fuente" width="100">Fuente</th>
 				<th field="umb" width="100">Estado</th>
 				<th field="Municipio" width="100">Ciudad</th>
-
+				<th field="contacto" width="100"  sortable="true">contacto</th>
+				
 				<!-- <th field="Estado" width="100">Estado1</th> -->
 				<!-- <th field="cPrograma" width="100"></th> -->
 			</tr>
@@ -244,6 +278,8 @@
 		<a href="#" class="easyui-linkbutton" iconCls="icon-mail" plain="true" onclick="EmailEstudiante()">Enviar correo al aspirante</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="desconectar()">Desconectar</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="getSelections()">Correo Masivo</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="llamados()">llamados</a>
+
 
             <div id="tb" style="padding:3px">
 			    <span>Identificacion:</span>
@@ -329,6 +365,14 @@
 							}
 						?>
 					</select>
+			</div>	
+			<div class="fitem">
+				<label>Contacto:</label>
+				<!-- <input name="Fuente" class="easyui-validatebox" validType="text"> -->
+				<select id="contacto" class="easyui-combobox" name="contacto" style="width:200px;">
+			    <option value="Contactado">Contactado</option>
+			    <option value="Pendiente Contactar">Pendiente Contactar</option>
+				</select>
 			</div>
 			<div class="fitem">
 				<label>Observacion:</label>

@@ -15,6 +15,8 @@ $Fuente = $_REQUEST['Fuente'];
 $umb = $_REQUEST['umb'];
 $Rh = $_REQUEST['Rh'];
 $Ciudad = $_REQUEST['cCiudad'];
+$contacto = $_REQUEST['contacto'];
+
 
 //echo $Ciudad;
 
@@ -25,7 +27,7 @@ $tipo =  explode('/',$_FILES["foto"]["type"]);
 copy($_FILES["foto"]["tmp_name"],"fotos/".$Identificacion.".".$tipo[1]);
 }
 
-$sql = "update estudiante set Identificacion='$Identificacion',Nombre='$Nombre',Apellido='$Apellido',Telefono='$Telefono',Email='$Email',Programa='$Programa',fuente='$Fuente',Observacion='$Observacion',umb='$umb',Rh='$Rh',Ciudad='$Ciudad' where Id=$id";
+$sql = "update estudiante set Identificacion='$Identificacion',Nombre='$Nombre',Apellido='$Apellido',Telefono='$Telefono',Email='$Email',Programa='$Programa',fuente='$Fuente',Observacion='$Observacion',umb='$umb',Rh='$Rh',Ciudad='$Ciudad',Contacto='$contacto' where Id=$id";
 $sql=$conex->query($sql);
 //$sql->execute();
 //$result=$sql->fetchAll();

@@ -185,16 +185,16 @@ include("../modelo/funciones.php");
   if($ciudadE==776)
     {
       $destino ="laura.toro@umb.edu.co";
-      $coordinador ="johanna.forero@umb.edu.co";
+      $coordinador ="tatiana.rubio@umb.edu.co";
     }else{  
       if($programaP =='1' || $programaP =='2' || $programaP =='5'|| $programaP =='8' || $programaP =='9' || $programaP =='12' || $programaP =='13' || $programaP =='14' || $programaP =='19'){
-        $destino ="claudia.santacruz@umb.edu.co";
-        $coordinador ="tatiana.nunez@umb.edu.co";
+        $destino ="tatiana.nunez@umb.edu.co";
+        $coordinador ="diana.serrano@umb.edu.co";
       }
       else
       {
          $destino="Liset.abreu@umb.edu.co";
-         $coordinador ="tatiana.nunez@umb.edu.co";
+         $coordinador ="diana.serrano@umb.edu.co";
       }
     }
    
@@ -441,7 +441,7 @@ if ($recipients = $swift->send($message, $failures))
                                   <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse1"> <i class="icon-plus-sign"></i> Opción 1: Pago en universidad </a> </div>
                                   <div id="collapse1" class="accordion-body collapse" style="height: 0px;">
                                     <div class="accordion-inner">
-                                      <p class="pasos">Puedes acercarte a una de nuestras sedes en Bogotá, Cajicá o Bucaramanga y cancelar en la Tesorería UMB con pago en efectivo, tarjeta de crédito o débito con documento de identidad. Recuerda enviar el comprobante de pago al correo <a href="mailto:claudia.santacruz@umb.edu.co" title="Enviar comprobante">claudia.santacruz@umb.edu.co</a> o <a href="mailto:liset.abreu@umb.edu.co" title="Enviar comprobante">liset.abreu@umb.edu.co</a>, según el programa académico seleccionado.</p>
+                                      <p class="pasos">Puedes acercarte a una de nuestras sedes en Bogotá, Cajicá o Bucaramanga y cancelar en la Tesorería UMB con pago en efectivo, tarjeta de crédito o débito con documento de identidad. Recuerda enviar el comprobante de pago al correo <a href="mailto:tatiana.nunez@umb.edu.co" title="Enviar comprobante">tatiana.nunez@umb.edu.co</a> o <a href="mailto:liset.abreu@umb.edu.co" title="Enviar comprobante">liset.abreu@umb.edu.co</a>, según el programa académico seleccionado.</p>
                                       <p class="pasos">Códigos para pago de inscripción</p>
                                       <div class="table-1">
                                         <table width="100%">
@@ -513,7 +513,7 @@ if ($recipients = $swift->send($message, $failures))
                                             </tbody>
                                           </table>
                                         </div>
-                                        <p class="pasos">Recuerde enviar el comprobante de pago al correo <a href="mailto:claudia.santacruz@umb.edu.co" title="Enviar comprobante">claudia.santacruz@umb.edu.co</a> o <a href="mailto:liset.abreu@umb.edu.co" title="Enviar comprobante">liset.abreu@umb.edu.co</a> según el programa académico seleccionado.</p>
+                                        <p class="pasos">Recuerde enviar el comprobante de pago al correo <a href="mailto:tatiana.nunez@umb.edu.co" title="Enviar comprobante">tatiana.nunez@umb.edu.co</a> o <a href="mailto:liset.abreu@umb.edu.co" title="Enviar comprobante">liset.abreu@umb.edu.co</a> según el programa académico seleccionado.</p>
                                       </div>
                                     </div>
                                   </div>

@@ -1,5 +1,7 @@
+
 <?php
-echo sha1('53098687');
+echo sha1('1143443031');
 echo'<br>';
-echo "53098687";
+echo "1143443031";
 ?>
+listar

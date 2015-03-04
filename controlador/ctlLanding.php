@@ -86,9 +86,9 @@ if ($correoP=="" && $telefonoP=="") {
 
                 if($departamento=='776' || $fuenteP=='Tolima'){
                     //$destino ="johanna.forero@umb.edu.co";
-                    $destino ="laura.toro@umb.edu.co ";
+                    $destino ="diana.diaz@umb.edu.co ";
                     $subject = 'Pre-Inscripción por Landing Page 2014 Virtual Tolima (Google)';  
-                    $CC="johanna.forero@umb.edu.co"; 
+                    $CC="tatiana.rubio@umb.edu.co"; 
                     //$CC="maccevedor@gmail.com"; 
                 }else{
                     if($programaP =='0' || $programaP =='1' || $programaP =='2' || $programaP =='4'|| $programaP =='5'|| $programaP =='8' || $programaP =='9' || $programaP =='12' || $programaP =='13' || $programaP =='14'){

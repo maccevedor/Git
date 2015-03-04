@@ -238,22 +238,7 @@ return false;
 <body>
 
 
-<!--Place this code where you want VIP widget to be rendered -->
-<div id="casengo-vipbtn" class="casengo-vipbtn"></div>
 
-<!--Place this code after the last Casengo VIP widget -->
-<script type="text/javascript">
-  (function() {
-    var btn, l=0, setAttr = function(el, attrs) { for(var a in attrs) el.setAttribute('data-' + a, attrs[a]); },
-    getBtn = function() {
-      btn = document.getElementById('casengo-vipbtn'); l++;
-      if(!btn && l<=20) { setTimeout(getBtn,50); } else {
-        setAttr(btn, {subdomain: 'umb', group: 'undefined', ctype: 'inline', position: 'bottom-right' , language: 'en_US'});
-        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-        po.src = '//umb.casengo.com/apis/inline-widget.js?r=cfb1457622cb99a6dce03b03fd6822686b3842bf';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-      }}; getBtn();
-  })();
 </script>
 
 

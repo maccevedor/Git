@@ -7,7 +7,7 @@ img/
 *.gif
 *.css
 images/
-lib/
+#lib/
 modelo/fotos/
 *.csv
 [imap]

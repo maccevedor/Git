@@ -38,11 +38,13 @@ $row = $statement->fetch();
 $mandrillUser= $row["usuario"];
 $mandrillPass= $row["clave"];
 
-$sql="select Url from programa where id='$programa'";
+$sql="select Url,Imagen from programa where id='$programa'";
 $statement = $conex->prepare($sql);
 $statement->execute();
 $row = $statement->fetch(); 
 $url= $row["Url"];
+$imagen= $row["Imagen"];
+
 
 
 
@@ -97,7 +99,7 @@ $message->setBody(
 	<td height="3" colspan="5" align="center" bgcolor="#e8534f"><a href="http://portal.umbvirtual.edu.co/inscripcion/index.php" target="_blank" title="Inscríbete aquí"><img src="http://www.umbvirtual.edu.co/wp-content/mail-corporativo/images/png/inscribete.png" width="560" height="55" alt="Inscríbete aquí" border="0"/></a></td>
    </tr>
 	<tr>
-		<td colspan="5" bgcolor="#e8534f"><img src="http://portal.umbvirtual.edu.co/inscripcion/img/pensum/c'.$programa.'.jpg" width="600" height="815" alt="Header"/></td>
+		<td colspan="5" bgcolor="#e8534f"><img src="'.$imagen.'" width="600" height="815" alt="Header"/></td>
 	</tr>  
 	<tr>
 	  <td colspan="5" bgcolor="#B0403D" height="10">&nbsp;</td>

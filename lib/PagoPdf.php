@@ -55,7 +55,9 @@ $banco = $_REQUEST['banco'];
 
 $tipoPago = $_REQUEST['tipoPago'];  
 $cuenta = $_REQUEST['cuenta']; 
-$identificacion = $_REQUEST['identificacionP']; 
+$identificacion = $_REQUEST['identificacionP'];
+$nombreP = $_REQUEST['nombreP'];
+
 $valor = $_REQUEST['valor']; 
 $programaP = $_REQUEST['programaP']; 
 $ciudadP = $_REQUEST['ciudadP']; 
@@ -207,7 +209,7 @@ certifico que el día  '.$dia.' del mes '.$meses[(intval($mes))-1].' del año '.
 
 '.$tipoCuenta.' No. '.$cuenta.'<br>
 del Banco o al Red '.$banco.'<br><br>
-Por el valor de '.$valorTexto.' ($'.$valor.') para el pago de '.$tipoPago.',
+Por el valor de '.$valorTexto.' ($'.$valor.') para el pago de '.$nombreP.',
 identificado(a) con documento de identidad número '.$identificacion.' en el programa de programa de '.$nombre.' en la 
 UNIVERSIDAD MANUELA BELTRAN.<br><br>
 Cordialmente,<br><br><br><br><br><br>

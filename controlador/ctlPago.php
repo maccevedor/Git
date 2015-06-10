@@ -8,6 +8,7 @@ include("../modelo/conexion.php");
     $objPag=new clsPago(); 
     $conex = conectaBaseDatos();
 
+    $nombreP = $_REQUEST['nombreP'];    
 
     $objPag->setPersona($_REQUEST['persona']); 
     $objPag->setIdPersona($_REQUEST['idPersona']); 
@@ -18,7 +19,7 @@ include("../modelo/conexion.php");
     $objPag->setValor($_REQUEST['valor']);
    // $objPag->setValor($_REQUEST['valorTexto']);  
     //$objPag->setTipopago($_REQUEST['tipoPago']);  
-    $objPag->setIdentificacionP($_REQUEST['identificacionP']);  
+    $objPag->setIdentificacionP($_REQUEST['identificacionP']);
     $objPag->setProgramaP($_REQUEST['programaP']); 
     $objPag->setCiudadP($_REQUEST['ciudadP']);   
     $objPag->setId($_REQUEST['id']);   
@@ -439,6 +440,9 @@ include("../modelo/conexion.php");
 
                               <?php  print "<p>Identificacion del inscrito: <input type=\"textbox\" name=\"identificacionP\" id=\"identificacionP\" value=\"$identificacionP\" class=\"span12\" /></p>\n" ?>
 
+                              <?php  print "<p>Nombre del inscrito: <input type=\"textbox\" name=\"nombreP\" id=\"nombreP\" value=\"$nombreP\" class=\"span12\" /></p>\n" ?>
+
+
                               <?php  print "<p>Valor: <input type=\"textbox\" name=\"valor\" id=\"valor\" value=\"$valor\" class=\"span12\" readonly/></p>\n" ?>
 
                             </div>
@@ -477,7 +481,7 @@ include("../modelo/conexion.php");
 
                               {
 
-                                var win=window.open('http://umb.edu.co/pagos/inscripcion.html','_blank');
+                                var win=window.open('http://media.umb.edu.co/pagos/inscripcion.html','_blank');
 
                                 win.focus();
 

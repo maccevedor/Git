@@ -23,7 +23,7 @@ include('view/header.php');
 
 					<div class="col-md-4">
 						<div class="comment-input">
-							Cédula:<input type="text" onkeypress="return soloLetras(event)" name="cedula" id="cedula" value="" placeholder="Ingresa tu número de identidad" size="22" tabindex="1" aria-required="true" class="input-name" required>
+							Correo electrónico:<input type="email" name="correo" id="correo" value="" placeholder="Ingresa tu cuenta de correo electrónico" size="22" tabindex="1" aria-required="true" class="input-name" required>
 						</div>
 						<div class="comment-input">
 							Ciudad:<select id="ciudad" name="ciudad" placeholder="Ingresa tu ciudad de residencia"  tabindex="1" required >
@@ -40,11 +40,13 @@ include('view/header.php');
 					</div>
 
 					<div class="col-md-4">
-						<div class="comment-input">
-							Correo electrónico:<input type="email" name="correo" id="correo" value="" placeholder="Ingresa tu cuenta de correo electrónico" size="22" tabindex="1" aria-required="true" class="input-name" required>
-						</div>
+						
+                        
 						<div class="comment-input">
 							Celular o teléfono:<input type="text" name="telefono" id="telefono" value="" placeholder="Ingresa un número de contacto" size="22" tabindex="1" aria-required="true" class="input-name" maxlength=10 required>
+						</div>
+                        <div class="comment-input">
+							<input type="hidden" onkeypress="return soloLetras(event)" name="cedula" id="cedula" value="" placeholder="Ingresa tu número de identidad" size="22" tabindex="1" aria-required="true" class="input-name" valu="666666" required>
 						</div>
 					</div>
 
@@ -119,23 +121,23 @@ include('view/header.php');
 			<div class="row">
 				<h1 class="subtitle">DESCUENTOS</h1>
 				<div class="col-md-4">
-					• Afiliado a Compensar descuento del 8%<br><br>
-					• Afiliado a Colsubsidio descuento del 8%<br><br>
-					• Afiliado a Porvenir descuento del 8%<br>(solo Pregrados)<br><br>
-					• Afiliado al Fondo Nacional del Ahorro descuento del 8%<br><br>
-					• Beneficiarios de Somec 8%
+					• Afiliado a Compensar, descuento del 8% (solo pregrado y posgrado)<br><br>
+					• Afiliado a Colsubsidio, descuento del 8% (solo pregrado y posgrado)<br><br>
+					• Afiliado a Porvenir, descuento del 8% (solo pregrados)<br><br>
+					• Afiliado al Fondo Nacional del Ahorro, descuento del 8% (solo pregrados)<br><br>
+					• Beneficiarios de Somec, descuento del 8% (solo pregrados)
 				</div>
 
 				<div class="col-md-4">
-					• Beneficiarios de Colfondos Suma 8%<br><br>
-					• Beneficiarios Casur (Caja de Sueldos de Retiro de la Policía Nacional) 5%<br><br>
-					• Funcionarios UMB 20%<br><br>
-					• Familiar funcionarios UMB (1er y 2do grado de consanguinidad) 10%
+					• Funcionarios UMB, descuento del 20%<br><br>
+					• Familiar funcionarios UMB (1er y 2do grado de consanguinidad) descuento del 10%<br><br>
+					• Egresado UMB, descuento del 10% (para segundo programa de pregrado)<br><br>
+					• En situación de discapacidad, descuento del 20%<br><br>
+					• Pepsico Alimentos ZF Ltda, descuento del 10% y 8%<br><br>
 				</div>
 
 				<div class="col-md-4">
-					• Egresado UMB 10% (para segundo programa de pregrado)<br><br>
-					• En situación de discapacidad 20%
+					• CASUR, descuento del 8% (solo pregrado y posgrado)
 				</div>
 			</div>
 		</div>

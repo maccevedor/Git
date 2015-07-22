@@ -32,12 +32,12 @@
 								   		return false;
 								   	}
 									
-									if(document.getElementById("cedula").value=="" ){
-
-								   		alert("debe digitar su cedula");
-								   		return false;
-								   	}
-									
+//									if(document.getElementById("cedula").value=="" ){
+//
+//								   		alert("debe digitar su cedula");
+//								   		return false;
+//								   	}
+//									
 									
 									 var emailExp = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
 										if (!(formulario.correo.value.match(emailExp)))

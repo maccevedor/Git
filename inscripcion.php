@@ -48,6 +48,9 @@ include('view/header.php');
                         <div class="comment-input">
 							<input type="hidden" onkeypress="return soloLetras(event)" name="cedula" id="cedula" value="" placeholder="Ingresa tu número de identidad" size="22" tabindex="1" aria-required="true" class="input-name" valu="666666" required>
 						</div>
+                        <div id="informacion">
+
+                        </div>
 					</div>
 
 					<input type="hidden" id="fuente" name="fuente" value="<?php echo $fuente ?>">
@@ -70,7 +73,6 @@ include('view/header.php');
 						<div id="mensaje">Acepto cláusula de tratamiento de datos personales. <a onclick="vermas()">Leer más</a>
 							</div>
 					</div>
-
 					<div class="col-md-12">
 						<div id="terminos" style="display:none">
 						<!-- <div id="terminos"> -->
@@ -88,6 +90,7 @@ include('view/header.php');
 					</div>
 
 				</form>
+
 			</div>
 		</div>
     </div> <!-- /container -->

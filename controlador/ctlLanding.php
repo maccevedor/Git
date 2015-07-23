@@ -1,8 +1,8 @@
 <?php
-include("../clases/clsLanding.php"); 
-include("../modelo/conexion.php"); 
-include("../modelo/funciones.php"); 
-    //crear el objeto con base en la clase 
+include("../clases/clsLanding.php");
+include("../modelo/conexion.php");
+include("../modelo/funciones.php");
+    //crear el objeto con base en la clase
 $fuente= $_REQUEST['fuente'];
 $Indexcol="";
 $Conversion="";
@@ -10,7 +10,7 @@ $Manager="";
 
     if($fuente=="Indexcol" or $fuente=="Youtube" or $fuente=="Facebook" or $fuente=="Linkedin")
     {
-    include('../lib/Indexcol.php');    
+    include('../lib/Indexcol.php');
     }
 
 
@@ -20,53 +20,54 @@ $Manager="";
     $nombres=ucfirst($names[0]);
     $apellidos=ucfirst($names[1]);
 
-    $objPag=new clsLanding(); 
-    $objPag->setNombres($nombres); 
-    $objPag->setApellidos($apellidos); 
-    $objPag->setCedula($_REQUEST['cedula']); 
-    $objPag->setCiudad($_REQUEST['ciudad']); 
-    $objPag->setCorreo($_REQUEST['correo']); 
-    $objPag->setTelefono($_REQUEST['telefono']); 
-    $objPag->setPrograma($_REQUEST['programa']);  
+    $objPag=new clsLanding();
+    $objPag->setNombres($nombres);
+    $objPag->setApellidos($apellidos);
+    $objPag->setCedula('000000');
+    //$objPag->setCedula($_REQUEST['cedula']);
+    $objPag->setCiudad($_REQUEST['ciudad']);
+    $objPag->setCorreo($_REQUEST['correo']);
+    $objPag->setTelefono($_REQUEST['telefono']);
+    $objPag->setPrograma($_REQUEST['programa']);
     $objPag->setFch($_REQUEST['fch']);
     $objPag->setFuente($_REQUEST['fuente']);
 
-    $objPag->guardar($conex);  
-	 
+    $objPag->guardar($conex);
 
-  $nombresP = (isset($_REQUEST['nombres'])) 
+
+  $nombresP = (isset($_REQUEST['nombres']))
     ? trim(strip_tags($_REQUEST['nombres']))
-    : ""; 
+    : "";
 
-    $apellidosP = (isset($_REQUEST['apellidos'])) 
+    $apellidosP = (isset($_REQUEST['apellidos']))
     ? trim(strip_tags($_REQUEST['apellidos']))
-    : ""; 
+    : "";
 
-    $cedulaP = (isset($_REQUEST['cedula'])) 
+    $cedulaP = (isset($_REQUEST['cedula']))
     ? trim(strip_tags($_REQUEST['cedula']))
-    : ""; 
+    : "";
 
-    $ciudadP = (isset($_REQUEST['ciudad'])) 
+    $ciudadP = (isset($_REQUEST['ciudad']))
     ? trim(strip_tags($_REQUEST['ciudad']))
-    : ""; 
-     $correoP = (isset($_REQUEST['correo'])) 
+    : "";
+     $correoP = (isset($_REQUEST['correo']))
     ? trim(strip_tags($_REQUEST['correo']))
     : "";
 
-     $telefonoP = (isset($_REQUEST['telefono'])) 
+     $telefonoP = (isset($_REQUEST['telefono']))
     ? trim(strip_tags($_REQUEST['telefono']))
-    : ""; 
+    : "";
 
-    $programaP = (isset($_REQUEST['programa'])) 
+    $programaP = (isset($_REQUEST['programa']))
     ? trim(strip_tags($_REQUEST['programa']))
-    : ""; 
-    $fuenteP = (isset($_REQUEST['fuente'])) 
+    : "";
+    $fuenteP = (isset($_REQUEST['fuente']))
     ? trim(strip_tags($_REQUEST['fuente']))
-    : ""; 
+    : "";
 
 if ($correoP=="" && $telefonoP=="") {
             header("Location: ../error.html");
-        }else{	
+        }else{
 
 				$sql="select municipio,relacion from municipios where id='$ciudadP'";
 				//$nombreCiudad=mysql_fetch_array(mysql_query($sql,$conexion));
@@ -87,26 +88,26 @@ if ($correoP=="" && $telefonoP=="") {
                 if($departamento=='776' || $fuenteP=='Tolima'){
                     //$destino ="johanna.forero@umb.edu.co";
                     $destino ="diana.diaz@umb.edu.co ";
-                    $subject = 'Pre-Inscripción por Landing Page 2014 Virtual Tolima (Google)';  
-                    $CC="tatiana.rubio@umb.edu.co"; 
-                    //$CC="maccevedor@gmail.com"; 
+                    $subject = 'Pre-Inscripción por Landing Page 2014 Virtual Tolima (Google)';
+                    $CC="tatiana.rubio@umb.edu.co";
+                    //$CC="maccevedor@gmail.com";
                 }else{
                     if($programaP =='0' || $programaP =='1' || $programaP =='2' || $programaP =='4'|| $programaP =='5'|| $programaP =='8' || $programaP =='9' || $programaP =='12' || $programaP =='13' || $programaP =='14'){
                         $destino ="claudia.santacruz@umb.edu.co";
                         $subject = 'Pre-Inscripción por Landing Page 2014 Virtual (Google)';
-                        $CC="uvirtual@umb.edu.co";     
+                        $CC="uvirtual@umb.edu.co";
                     }
                     else
                     {
                         $destino="liset.abreu@umb.edu.co";
-                        $subject = 'Pre-Inscripción por Landing Page 2014 Virtual (Google)'; 
-                        $CC="uvirtual@umb.edu.co";   
+                        $subject = 'Pre-Inscripción por Landing Page 2014 Virtual (Google)';
+                        $CC="uvirtual@umb.edu.co";
                     }
                 }
 
 				include_once "../lib/Swift/swift_required.php";
 
-				
+
 				$from = array('uvirtual@umb.edu.co' =>'UMB Virtual');
 				$to = array(
 				 $destino => 'Asesor UMB virtual'
@@ -142,14 +143,14 @@ if ($correoP=="" && $telefonoP=="") {
 				 print_r($failures);
 				}
 
-                
+
 			}
 
                if ($fuenteP=='expoelearning') {
 
                     header('Location: expo.php');
                         # code...
-                } 
+                }
 
 
 ?>
@@ -179,15 +180,15 @@ if ($correoP=="" && $telefonoP=="") {
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-  
-    <?php echo $Indexcol; ?>        
+
+    <?php echo $Indexcol; ?>
 
   </head>
 
   <body>
 
-    <?php echo $Manager; ?>       
-          
+    <?php echo $Manager; ?>
+
    <div class="navbar">
         <div class="container">
             <div id="cabezote">
@@ -213,8 +214,8 @@ if ($correoP=="" && $telefonoP=="") {
                     Si estás viendo esta página, quiere decir que el proceso de registro para nuevos aspirantes ha sido completado de forma exitosa.<br><br>
 
                     Nuestras asesoras se estarán comunicando contigo dentro de los siguientes días.
-    
-                     <?php echo $Conversion; ?>   
+
+                     <?php echo $Conversion; ?>
 
                 </div>
             </div>

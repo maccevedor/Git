@@ -16,6 +16,8 @@ $Manager="";
 
   $conex = conectaBaseDatos();
 
+
+
     $names =array($_REQUEST['nombres'],$_REQUEST['apellidos']);
     $nombres=ucfirst($names[0]);
     $apellidos=ucfirst($names[1]);
@@ -32,7 +34,6 @@ $Manager="";
     $objPag->setFch($_REQUEST['fch']);
     $objPag->setFuente($_REQUEST['fuente']);
 
-    $objPag->guardar($conex);
 
 
   $nombresP = (isset($_REQUEST['nombres']))
@@ -65,7 +66,21 @@ $Manager="";
     ? trim(strip_tags($_REQUEST['fuente']))
     : "";
 
-if ($correoP=="" && $telefonoP=="") {
+$consulta = "select e.* from estudiante e inner join programa  p on  p.id = e.Programa where e.email='$correoP'  and p.id= $programaP";
+$sql=$conex->query($consulta);
+$sql->execute();
+$result=$sql->fetchAll(PDO::FETCH_ASSOC);
+
+if (empty($result)){
+
+    $objPag->guardar($conex);
+
+    $mensaje = "MUCHAS GRACIAS, TU PROCESO SE HA REALIZADO SATISFACTORIAMENTE.PRONTO NOS PONDREMOS EN CONTACTO CONTIGO.";
+    $texto  = "Si estás viendo esta página, quiere decir que el proceso de registro para nuevos aspirantes ha sido completado de forma exitosa.<br><br>
+
+                    Nuestras asesoras se estarán comunicando contigo dentro de los siguientes días.";
+
+        if ($correoP=="" && $telefonoP=="") {
             header("Location: ../error.html");
         }else{
 
@@ -153,6 +168,16 @@ if ($correoP=="" && $telefonoP=="") {
                 }
 
 
+
+}else{
+
+    $mensaje = "Usted ya está registrado en nuestro sistema, si desea información adicional comuníquese al teléfono 5460600 ext 1470 - 1473 o al mail uvirtual@umb.edu.co";
+    $texto  = "Si ve el siguiente mensaje por favor realice nuevamente el proceso de inscripción y verifique los datos, en un momento aparecerá el formulario de contacto.";
+}
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -208,12 +233,11 @@ if ($correoP=="" && $telefonoP=="") {
    <div class="jumbotron">
         <div class="container">
             <div class="row">
-                <h1 class="subtitle">MUCHAS GRACIAS, TU PROCESO SE HA REALIZADO SATISFACTORIAMENTE.PRONTO NOS PONDREMOS EN CONTACTO CONTIGO.</h1>
+                <h1 class="subtitle">                     <?php echo $mensaje; ?> </h1>
                 <div class="col-md-12">
                     <h3>Apreciado aspirante:</h3><br>
-                    Si estás viendo esta página, quiere decir que el proceso de registro para nuevos aspirantes ha sido completado de forma exitosa.<br><br>
+                                         <?php echo $texto; ?>
 
-                    Nuestras asesoras se estarán comunicando contigo dentro de los siguientes días.
 
                      <?php echo $Conversion; ?>
 

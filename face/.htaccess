@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+redirectMatch 301 ^(.*)$ http://umbvirtual.edu.co/inscripcion/formulario.jpg
+#redirectMatch 301 ^(.*)$ https://www.facebook.com/umbadmisiones/app_208195102528120
+</IfModule>
+

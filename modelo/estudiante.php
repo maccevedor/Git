@@ -31,7 +31,7 @@
     {
         $SqlEstados=" <>'776'";
         $SqlFuente="<> 'Tolima'";
-        $SqlCondicion ="and";        
+        $SqlCondicion ="and";
         // echo "no ibague";
     }
     //echo "and muni.relacion $SqlEstados 776";
@@ -53,16 +53,16 @@
 
 						foreach($rows as $row){
 
-						array_push($crud, $row);  
-						}  
+						array_push($crud, $row);
+						}
 						$results["rows"]=$crud;
 
 						echo json_encode($results);
                         exit();
     }
-    
+
 						if (empty($itemid) && empty($productid) && empty($bapellido)){
-					
+
 						$sql=$conex->query("select count(*) as total from estudiante e inner join municipios  muni on  e.Ciudad =muni.id where (e.fuente $SqlFuente or muni.relacion $SqlEstados) and Estado='$estado'");
 						$sql->execute();
 						$result=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -75,17 +75,17 @@
 
 						foreach($rows as $row){
 
-						array_push($crud, $row);  
-						}  
+						array_push($crud, $row);
+						}
 						$results["rows"]=$crud;
 
-						echo json_encode($results);  
+						echo json_encode($results);
 
 
 						}else{
-		
 
-						$where = " e.Identificacion like '%$itemid%' and e.Nombre like '%$productid%' and e.Apellido like '%$bapellido%'    ";
+
+						$where = " e.Email like '%$itemid%' and e.Nombre like '%$productid%' and e.Apellido like '%$bapellido%'    ";
 						$sql=$conex->query("select count(*) as total from estudiante e , municipios  muni where e.estado='$estado' and e.Ciudad =muni.id and muni.relacion $SqlEstados and  ". $where);
 						$sql->execute();
 						$result=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -97,11 +97,11 @@
 
 						foreach($rows as $row){
 
-						array_push($crud, $row);  
-						}  
+						array_push($crud, $row);
+						}
 						$results["rows"]=$crud;
 
-						echo json_encode($results); 
+						echo json_encode($results);
 
 						}
 

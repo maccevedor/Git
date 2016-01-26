@@ -1,4 +1,4 @@
- <?php 
+﻿ <?php
  require_once("conexion.php");
  require_once('lock.php');
  require_once('funciones.php');
@@ -25,7 +25,7 @@
 			$llamar='Felicidades estas al dia';
 			//echo $llamar;
 
-   			
+
 		}
  ?>
 <!DOCTYPE html>
@@ -36,11 +36,11 @@
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<!-- <meta name="keywords" content="jquery,ui,easy,easyui,web"> -->
 	<meta name="description" content="easyui help you build your web page easily!">
-	
+
 	<title>UMBVIRTUAL</title>
 	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
 	<link rel="stylesheet" type="text/css" href="../css/icon.css">
-	
+
 	<script type="text/javascript" src="datagrid-filter.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
@@ -55,14 +55,14 @@
 						});
 		}
 
-		
+
 		//Esta funcion se encarga de ocultar las funciones de administrador
 		function ocultar()
 			{
 			document.getElementById('master').style.display='none';
 			document.getElementById('subir').style.display='none';
 			}
-		//Realiza la creacion de un registro 	
+		//Realiza la creacion de un registro
 		function newUser(){
 			$('#dlg').dialog('open').dialog('setTitle','New User');
 			$('#fm').form('clear');
@@ -160,8 +160,8 @@
 									});
 								}
 							},'json');
-		}  
-        
+		}
+
 		//Envia email cuando se selecciona un  estudiante
 		function EmailEstudiante(){
 			var row = $('#dg').datagrid('getSelected');
@@ -199,24 +199,24 @@
 			}
 
 		function registrar(){
-			window.location.href = 'registration.php'; 
-			}	
+			window.location.href = 'registration.php';
+			}
 
 		function desconectar(){
-			window.location.href = 'logout.php'; 
-			}	
-			
+			window.location.href = 'logout.php';
+			}
 
-		function informacion(){		
+
+		function informacion(){
 			var row = $('#dg').datagrid('getSelected');
 			url = 'informeEstudiante.php?id='+row.id;
-			window.open(url,'_blank');					
-		}	
+			window.open(url,'_blank');
+		}
 		function organizar(){
 			 $('#dg').datagrid('load',{
 			        estado: $('#organizar').val(),
                     oPrograma: $('#oPrograma').val(),
-			    });		
+			    });
 		}
 
 		$(document).ready(function () {
@@ -235,7 +235,7 @@
 	<div class="demo-info" style="margin-bottom:10px">
 		<div>Seleccione el Estudiante que desea enviarle el correo</div>
 	</div>
-	
+
 	<table id="dg" title="Usuarios que realizaron el proceso de inscripcion"  class="easyui-datagrid" style="width:1280px;height:800px"
 			 url="estudiante.php?sede=<?php echo $sede ?>"
 			toolbar="#toolbar" pagination="true"
@@ -256,7 +256,7 @@
 				<th field="umb" width="100">Estado</th>
 				<th field="Municipio" width="100">Ciudad</th>
 				<th field="contacto" width="100"  sortable="true">contacto</th>
-				
+
 				<!-- <th field="Estado" width="100">Estado1</th> -->
 				<!-- <th field="cPrograma" width="100"></th> -->
 			</tr>
@@ -266,11 +266,11 @@
 
 
 	<div id="toolbar">
- 	
+
 		<div id="master">
 
-		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">Eliminar</a> 
-		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" plain="true"  onclick="registrar()" >Registrar</a> 
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">Eliminar</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" plain="true"  onclick="registrar()" >Registrar</a>
 		</div>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-tip" plain="true" onclick="informacion()">Informacion</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Editar</a>
@@ -282,7 +282,7 @@
 
 
             <div id="tb" style="padding:3px">
-			    <span>Identificacion:</span>
+			    <span>Email:</span>
 			    <input id="bidentificacion" name="bidentificacion" style="line-height:26px;border:1px solid #ccc" onkeypress="doSearch()">
 			    <span>Nombre:</span>
 			    <input id="bnombre" style="line-height:26px;border:1px solid #ccc" onkeypress="doSearch()">
@@ -294,7 +294,7 @@
 					<select onChange="organizar();" id="organizar" name="organizar"  style="width:200px;" >
 				    <option value="1">Aspirante</option>
 				    <option value="2">Admisiones</option>
-                    <option value="0">Todos</option>    
+                    <option value="0">Todos</option>
 					</select>
 					</div>
                     <label>Programa:</label>
@@ -336,7 +336,7 @@
 			</div>
 			<div class="fitem">
 				<label>Email:</label>
-				<input name="Email" class="easyui-validatebox" validType="email">
+				<input name="Email">
 			</div>
 			<div class="fitem">
 			<label>Ciudad:</label>
@@ -359,13 +359,13 @@
 					<option value="">- Seleccione un  nivel formación -</option>
 						<?php
 							$Programa = programa();
-																		
+
 							foreach($Programa as $indice => $registro){
 							echo "<option value=".$registro['id'].">".$registro['Programa']."</option>";
 							}
 						?>
 					</select>
-			</div>	
+			</div>
 			<div class="fitem">
 				<label>Contacto:</label>
 				<!-- <input name="Fuente" class="easyui-validatebox" validType="text"> -->
@@ -436,15 +436,15 @@
 	</div>
 
 <div id="subir">
-<!-- 
+<!--
 subir archivo csv a la base de datos -->
 <form id="xlsSheet"
-name="xlsSheet" method="post" action="upload.php" target="_blank" 
+name="xlsSheet" method="post" action="upload.php" target="_blank"
 onsubmit="return valPwd();" enctype="multipart/form-data" >
 
 <td align="left">Archivo CSV a ingresar: </td>
         <td align="left"><input name="filename"
-type="file" class="button" required />    
+type="file" class="button" required />
 
  <input name="submit" type="submit"  value="Subir archivo"
 />
@@ -457,7 +457,7 @@ onsubmit="return valPwd();" enctype="multipart/form-data" >
 
 <td align="left">Archivo CSV de las campañas : </td>
         <td align="left"><input name="filename"
-type="file" class="button" required/>    
+type="file" class="button" required/>
 
  <input name="submit" type="submit" value="Subir archivo"/>
 
@@ -467,7 +467,7 @@ type="file" class="button" required/>
 	<!-- <a href='listar.php?hello=true'>Run PHP Function</a> -->
 	Seleccione desde que fecha se realizara la consulta<input type="date" name="fchExcel" id="fchExcel" required>
 	<input type="submit" id="excel" name="excel" onclick="fnc()"  value="Descargar " >
-	<script type="text/javascript">	
+	<script type="text/javascript">
 	function fnc()
 				{
 				fchExcel = $("#fchExcel").val();
@@ -475,12 +475,12 @@ type="file" class="button" required/>
 				window.open("excel.php?fchExcel="+fchExcel);
 				}
 						//$("#c").on("onclick", buscarPrograma);
-					
+
 
 						//console.log(fchExcel);
 
 						function excel(){
-					
+
 						//exit();
 						alert (fchExcel);
 						$.ajax({

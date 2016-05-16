@@ -1,3 +1,27 @@
+<html>
+<?php 
+	//echo "HTTP_REFERER : " . $_SERVER['HTTP_REFERER'] . "<br />"; 
+?>
+<head>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1714577708755028');
+fbq('track', "PageView");</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1714577708755028&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+<meta name="google" content="notranslate" />
+</head>
+
+<body>
+
 <?php
 include('view/header.php'); 
 ?>
@@ -87,6 +111,7 @@ include('view/header.php');
 
 					<div class="col-md-12">
 						<input type="submit" id="submit" name="submit" value="Enviar" class="button red" >
+						<input type="hidden" id="url" name="url" >
 					</div>
 
 				</form>
@@ -178,5 +203,17 @@ include('view/header.php');
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/anchor.js"></script>
+
+    <script>
+		// Lead
+		// Track when a user expresses interest in your offering (ex. form submission, sign up for trial, landing on pricing page)
+		fbq('track', 'Lead');
+	</script>
+	<script>
+		//debugger;
+	var url = localStorage.getItem('url') || document.referrer;
+	document.getElementById("url").value = url;	
+	localStorage.removeItem('url');
+	</script>
   </body>
 </html>

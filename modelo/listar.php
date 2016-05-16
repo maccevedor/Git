@@ -256,7 +256,7 @@
 				<th field="umb" width="100">Estado</th>
 				<th field="Municipio" width="100">Ciudad</th>
 				<th field="contacto" width="100"  sortable="true">contacto</th>
-
+				<th field="url" width="100"  sortable="true">url</th>
 				<!-- <th field="Estado" width="100">Estado1</th> -->
 				<!-- <th field="cPrograma" width="100"></th> -->
 			</tr>
@@ -386,6 +386,7 @@
 			    <option value="Programas">UmbVirtual(Programas)</option>
 			     <option value="Indexcol">Indexcol</option>
                 <option value="Tolima">Tolima</option>
+                <option value="Oficina Ibague">Oficina Ibague</option>
 			    <option value="Home">Toma de Home</option>
 			    <option value="Chat">Chat</option>
 			    <option value="Referido">Referido</option>

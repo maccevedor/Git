@@ -9,7 +9,7 @@ class clsLanding
     private $telefono;
     private $programa;
     private $fch;
-      
+	    private $url;      
    
 
 
@@ -59,12 +59,16 @@ class clsLanding
     $this->fuente=$fuente; 
       
     }
-    
+    function setUrl($url) 
+    { 
+    $this->url=$url; 
+      
+    } 
     
  
     function guardar($conex) 
     { 
-    $sql="insert into estudiante(Nombre,Apellido,Identificacion,Ciudad,Email,Telefono,Programa,Fch,Fuente) values('$this->nombres','$this->apellidos','$this->cedula','$this->ciudad','$this->correo','$this->telefono','$this->programa','$this->fch','$this->fuente')";
+    $sql="insert into estudiante(Nombre,Apellido,Identificacion,Ciudad,Email,Telefono,Programa,Fch,Fuente,url) values('$this->nombres','$this->apellidos','$this->cedula','$this->ciudad','$this->correo','$this->telefono','$this->programa','$this->fch','$this->fuente','$this->url')";
 
      $sentencia = $conex->prepare($sql);
                     //$ejecutar=mysql_query($sql,$con); 

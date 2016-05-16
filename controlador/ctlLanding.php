@@ -11,6 +11,8 @@ $Manager="";
     if($fuente=="Indexcol" or $fuente=="Youtube" or $fuente=="Facebook" or $fuente=="Linkedin")
     {
     include('../lib/Indexcol.php');
+    }elseif($fuente=="eikon"){
+    include('../lib/eikon.php');	    
     }
 
 
@@ -33,6 +35,7 @@ $Manager="";
     $objPag->setPrograma($_REQUEST['programa']);
     $objPag->setFch($_REQUEST['fch']);
     $objPag->setFuente($_REQUEST['fuente']);
+    $objPag->setUrl($_REQUEST['url']);
 
 
 
@@ -149,10 +152,6 @@ if (empty($result)){
 
 				if ($recipients = $swift->send($message, $failures))
 				{
-				 // echo 'Message successfully sent!';
-     //             echo $CC;
-     //             echo $destino;
-                    //echo $fuenteP;
 				} else {
 				 echo "Se presentó un error al realizar el envio del correo por favor comunicarse al 5460600 ext 1470 / 1473. :\n";
 				 print_r($failures);
@@ -174,9 +173,6 @@ if (empty($result)){
     $mensaje = "Usted ya está registrado en nuestro sistema, si desea información adicional comuníquese al teléfono 5460600 ext 1470 - 1473 o al mail uvirtual@umb.edu.co";
     $texto  = "Si ve el siguiente mensaje por favor realice nuevamente el proceso de inscripción y verifique los datos, en un momento aparecerá el formulario de contacto.";
 }
-
-
-
 
 ?>
 <!DOCTYPE html>
@@ -203,8 +199,7 @@ if (empty($result)){
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <![endif]-->	
 
     <?php echo $Indexcol; ?>
 
@@ -212,7 +207,19 @@ if (empty($result)){
 
   <body>
 
-    <?php echo $Manager; ?>
+    
+	<?php    
+//	echo $fuente;exit;		
+    if($fuente=="Indexcol" or $fuente=="Youtube" or $fuente=="Facebook" or $fuente=="Linkedin")
+    {
+	     echo $Manager; 
+    } elseif($fuente=="eikon")
+    {
+		echo $eikon;						    
+    }
+	?>
+    
+    
 
    <div class="navbar">
         <div class="container">

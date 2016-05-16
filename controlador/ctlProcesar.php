@@ -468,9 +468,7 @@ if ($recipients = $swift->send($message, $failures))
                                   <div id="collapse3" class="accordion-body in collapse" style="height: auto;">
                                     <div class="accordion-inner">
                                       <p class="pasos">Puedes cancelar en las siguientes entidades bancarias a nombre de UNIVERSIDAD MANUELA BELTRÁN:</p>
-                                      <div class="bank"> <img src="../img/png/banco-sudameris.png" border="0">
-                                        <p>Cuenta Corriente N.97000210</p>
-                                      </div>
+                                      
                                       <div class="bank"> <img src="../img/png/davivienda.png" border="0">
                                         <p>Cuenta Corriente N. 457000098261</p>
                                       </div>

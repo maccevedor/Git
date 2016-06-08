@@ -11,6 +11,24 @@ $Indexcol="";
 <!DOCTYPE html>
 <html lang="en">
  <head>
+	 
+	 <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1714577708755028');
+fbq('track', "PageView");</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1714577708755028&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
+
+	 <meta name="google" content="notranslate" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Universidad Manuela Beltrán">
@@ -33,6 +51,7 @@ $Indexcol="";
   include('lib/Indexcol.php');
   echo $Indexcol;
   }
+  
   if($fuente=="Tolima" )
     {
     $direccion="Edificio Fontainebleau, Cra 5ª No. 37 Bis Local 101";

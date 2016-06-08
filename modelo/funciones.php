@@ -113,10 +113,6 @@ inner join estados e on  e.id=m.relacion order by m.municipio";
 	return $resultado;
 }
 
-
-
-
-
 //conviente el primer caraceter a mayuscula esto no funciona con tildes , presento problemas
 function ucname($string) {
     $string =ucwords(strtolower($string));
@@ -161,6 +157,113 @@ function programa(){
 	
 	return $resultado;
 }
+
+
+function administradores(){
+	//echo 'hola';
+	$consulta = "SELECT * FROM admin WHERE estado='1'";
+	$conex = conectaBaseDatos();
+	$sentencia = $conex->prepare($consulta);
+	$sentencia->execute();
+	$resultado = $sentencia->fetchAll();
+		//$resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+		$sentencia->closeCursor();
+	//print_r($resultado);
+	return $resultado;
+	
+}
+
+
+function estado(){
+	$consulta = "SELECT * FROM estado WHERE estado='1'";
+	$conex = conectaBaseDatos();
+	$sentencia = $conex->prepare($consulta);
+	$sentencia->execute();
+	$resultado = $sentencia->fetchAll();
+		//$resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+		$sentencia->closeCursor();
+	//print_r($resultado);
+	return $resultado;
+	
+}
+
+
+
+function dameGestion($idEstado){
+	$consulta = "SELECT * FROM gestion WHERE idEstado=".$idEstado." and estado='1'";
+	$conex = conectaBaseDatos();
+	$sentencia = $conex->prepare($consulta);
+	$sentencia->execute();
+	$resultado = $sentencia->fetchAll();
+		//$resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+		$sentencia->closeCursor();
+	//print_r($resultado);
+	return $resultado;
+	
+}
+
+
+
+function gestion(){
+	$consulta = "SELECT * FROM gestion WHERE estado='1'";
+	$conex = conectaBaseDatos();
+	$sentencia = $conex->prepare($consulta);
+	$sentencia->execute();
+	$resultado = $sentencia->fetchAll();
+		//$resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+		$sentencia->closeCursor();
+	//print_r($resultado);
+	return $resultado;
+	
+}
+
+function GestionDescripcion(){
+	$consulta = "SELECT * FROM descripcion WHERE estado='1'";
+	$conex = conectaBaseDatos();
+	$sentencia = $conex->prepare($consulta);
+	$sentencia->execute();
+	$resultado = $sentencia->fetchAll();
+		//$resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+		$sentencia->closeCursor();
+	//print_r($resultado);
+	return $resultado;
+	
+}
+
+
+
+function descripcion($gestion){
+	$consulta = "SELECT * FROM descripcion WHERE idGestion=".$gestion."";
+	$conex = conectaBaseDatos();
+	$sentencia = $conex->prepare($consulta);
+	$sentencia->execute();
+	$resultado = $sentencia->fetchAll();
+		//$resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+		$sentencia->closeCursor();
+	//print_r($resultado);
+	return $resultado;
+}
+
+
+//Carga los datos del historial
+function historial($idInscrito){
+
+	$consulta = "SELECT h.*,d.nombre as descripcion,a.username FROM historial h
+	left join descripcion d on d.id = h.idDescripcion
+	left join admin a on a.id = h.idAdmin
+	 WHERE idEstudiante=".$idInscrito."";
+	$conex = conectaBaseDatos();
+	$sentencia = $conex->prepare($consulta);
+	$sentencia->execute();
+	$resultado = $sentencia->fetchAll();
+	//$resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+	$sentencia->closeCursor();
+	//print_r($resultado);
+	return $resultado;
+		
+}
+
+
 
 
 

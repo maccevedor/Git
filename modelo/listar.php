@@ -6,26 +6,17 @@
  $myusername = $_SESSION['login_user'];
  $idUser=$_SESSION['id'];
  $sede=$_SESSION['sede'];
-
-
 	$conex = conectaBaseDatos();
-
  		$sql="select count(*) as total from estudiante where contacto='Pendiente Contactar'";
- 		//echo $sql;
 		$contactados = $conex->prepare($sql);
 		$contactados->execute();
 		$row = $contactados->fetch();
 		//echo $row['total'];
 		if($row > 0){
-
 			$llamar='Recuerda que tienes '.$row['total'].' estudiosos por contactar';
-			//echo $llamar;
 		}else
 		{
 			$llamar='Felicidades estas al dia';
-			//echo $llamar;
-
-
 		}
  ?>
 <!DOCTYPE html>
@@ -34,18 +25,14 @@
 	<link rel="shortcut icon" href="../img/favicons/favicon.ico">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<!-- <meta name="keywords" content="jquery,ui,easy,easyui,web"> -->
 	<meta name="description" content="easyui help you build your web page easily!">
-
 	<title>UMBVIRTUAL</title>
 	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
 	<link rel="stylesheet" type="text/css" href="../css/icon.css">
-
 	<script type="text/javascript" src="datagrid-filter.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
 	<script type="text/javascript">
-
 		function llamados () {
 			$('#dlg').dialog('close');		// close the dialog
 						$('#dg').datagrid('reload');	// reload the user data
@@ -54,8 +41,6 @@
 							msg: '<?php echo $llamar; ?>'
 						});
 		}
-
-
 		//Esta funcion se encarga de ocultar las funciones de administrador
 		function ocultar()
 			{
@@ -72,13 +57,13 @@
 		//edita la informacion basica del estudiante
 		function editUser(){
 			var row = $('#dg').datagrid('getSelected');
-			 //alert (row.Ciudad);
+			 console.log(row);
 			if (row){
 				$('#dlg').dialog('open').dialog('setTitle','Editar Usuario');
 				$('#fm').form('load',row);
-				valorfoto = 'fotos/'+row.Identificacion+'.jpeg';
+				//valorfoto = 'fotos/'+row.Identificacion+'.jpeg';
 				//alert(valorfoto);
-				$("#mostrarfoto").attr('src',valorfoto);
+				//$("#mostrarfoto").attr('src',valorfoto);
 				url = 'modificarEstudiante.php?id='+row.id;
 			}
 		}
@@ -91,6 +76,24 @@
 				url = 'modificarEstudiante.php?id='+row.id;
 			}
 		}
+		//ver el historico del usuario
+		function historial(){
+			console.log($('#dg').datagrid('getSelected'));
+			var row = $('#dg').datagrid('getSelected');
+			//alert (row.id);
+			var idInscrito = row.id;
+			if (row){
+				Isncritohistorial(idInscrito);
+				
+				
+				$('#historial').dialog('open').dialog('setTitle','Historial del Usuario');
+				//$('#hs').form('load',row);
+				//valorfoto = 'fotos/'+row.Identificacion+'.jpeg';
+				//alert(valorfoto);
+				//$("#mostrarfoto").attr('src',valorfoto);
+				url = 'modificarEstudiante.php?id='+row.id;
+			}
+		}
 		//Se encarga de guardar los estudiantes nuevos
 		function saveUser(){
 			$('#fm').form('submit',{
@@ -99,8 +102,11 @@
 					return $(this).form('validate');
 				},
 				success: function(result){
-					var result = eval('('+result+')');
+
+					var result = JSON.parse(result);
+					console.log(result);
 					if (result.success){
+						
 						$('#dlg').dialog('close');		// close the dialog
 						$('#dg').datagrid('reload');	// reload the user data
 						$.messager.show({
@@ -183,8 +189,6 @@
 								});
 							}
 						},'json');
-				//url = 'mail.php?email='+row.id;
-
 			}
 		}
 
@@ -240,7 +244,6 @@
 			 url="estudiante.php?sede=<?php echo $sede ?>"
 			toolbar="#toolbar" pagination="true"
 			rownumbers="true" fitColumns="true"  pageSize="20" pageList="[20,50,100,500]">
-<!--        singleSelect="true"-->
 		<thead>
 			<tr>
 				<th field="Identificacion" width="50" sortable="true">Identificacion</th>
@@ -257,6 +260,8 @@
 				<th field="Municipio" width="100">Ciudad</th>
 				<th field="contacto" width="100"  sortable="true">contacto</th>
 				<th field="url" width="100"  sortable="true">url</th>
+				<th field="asesor" width="100"  sortable="true">asesor</th>
+				<th field="descripcion" width="100"  sortable="true">descripcion</th>
 				<!-- <th field="Estado" width="100">Estado1</th> -->
 				<!-- <th field="cPrograma" width="100"></th> -->
 			</tr>
@@ -279,6 +284,7 @@
 		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="desconectar()">Desconectar</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="getSelections()">Correo Masivo</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="llamados()">llamados</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="historial()">Historial</a>
 
 
             <div id="tb" style="padding:3px">
@@ -311,8 +317,7 @@
                         </select>
 			</div>
 
-	<div id="dlg" class="easyui-dialog" style="width:600px;height:600px;padding:20px 30px"
-			closed="true" buttons="#dlg-buttons">
+	<div id="dlg" class="easyui-dialog" style="width:600px;height:600px;padding:20px 30px" closed="true" buttons="#dlg-buttons">
 		<div class="ftitle">Información Del Estudiante</div>
 
 
@@ -367,6 +372,62 @@
 					</select>
 			</div>
 			<div class="fitem">
+				<label>Asesor:</label>
+				<select name="cAsesor"  id="cAsesor" class="easyui-validatebox">
+					<option value="">- Asesor 1-</option>
+						<?php
+							//echo 'hola';
+							$asesor = administradores();
+							//print_r($asesor);exit;
+							foreach($asesor as $indice => $registro){
+							echo "<option value=".$registro['id'].">".$registro['username']."</option>";
+							}
+						?>
+					</select>
+			</div>
+			<div class="fitem">
+				<label>Estado::</label>
+				<select name="cEstado"  id="cEstado" class="easyui-validatebox">
+					<option value="">- Seleccionar estado 1-</option>
+						<?php
+							//echo 'hola';
+							$estado = estado();
+							//print_r($asesor);exit;
+							foreach($estado as $indice => $registro){
+							echo "<option value=".$registro['id'].">".$registro['nombre']."</option>";
+							}
+						?>
+					</select>
+			</div>
+			<div class="fitem">
+				<label>Gestión:</label>
+				<select name="cGestion"  id="cGestion" class="easyui-validatebox">
+					<option value="">- Seleccione una-</option>
+						<?php
+							//echo 'hola';
+							$gestion = gestion();
+							//print_r($gestion);exit;
+							foreach($gestion as $indice => $registro){
+							echo "<option value=".$registro['id'].">".$registro['nombre']."</option>";
+							}
+						?>
+					</select>
+			</div>
+			<div class="fitem">
+				<label>Descripción:</label>
+				<select name="cDescripcion"  id="cDescripcion" class="easyui-validatebox">
+					<option value="">--Descripción-</option>
+					<?php
+							//echo 'hola';
+							$gestion = GestionDescripcion();
+							//print_r($gestion);exit;
+							foreach($gestion as $indice => $registro){
+							echo "<option value=".$registro['id'].">".$registro['nombre']."</option>";
+							}
+						?>
+				</select>
+			</div>
+			<div class="fitem">
 				<label>Contacto:</label>
 				<!-- <input name="Fuente" class="easyui-validatebox" validType="text"> -->
 				<select id="contacto" class="easyui-combobox" name="contacto" style="width:200px;">
@@ -376,7 +437,7 @@
 			</div>
 			<div class="fitem">
 				<label>Observacion:</label>
-				<input name="Observacion" class="easyui-validatebox" validType="text">
+				<input name="Observacion" class="easyui-validatebox" validType="text" >
 			</div>
 			<div class="fitem">
 				<label>Fuente:</label>
@@ -398,6 +459,7 @@
 			    <option value="Tv(Warner)">Tv(Warner)</option>
 				</select>
 			</div>
+<!--
 			<div class="fitem">
 			<label>Estado:</label>
 			<select id="umb" class="easyui-combobox" name="umb" style="width:200px;">
@@ -407,6 +469,7 @@
 			    <option value="Activo">Activo</option>
 			</select>
 			</div>
+-->
             <div class="fitem">
                 <label>Grupo sanguíneo:</label>
                 <select id="Rh" class="easyui-combobox" name="Rh" style="width:200px;">
@@ -420,6 +483,8 @@
                     <option value="AB-">AB-</option>
                 </select>
             </div>
+            	<input type="hidden" id="idUser" name="idUser" value="<?php echo $idUser ?>">
+<!--
 			<div class="fitem">
 				<label>Foto:</label>
 				<img id="mostrarfoto" class="mostrarfoto" name="mostarfoto" src="" alt="Smiley face" height="60" width="60"><br><br>
@@ -436,9 +501,62 @@
 		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancelar</a>
 	</div>
 
-<div id="subir">
+
+
+
+
+
+
+
+
+
+	<div id="historial" class="easyui-dialog" style="width:600px;height:600px;padding:20px 30px" closed="true" buttons="#historial-buttons">
 <!--
-subir archivo csv a la base de datos -->
+		<div class="ftitle">Historial Del Estudiante</div>
+
+
+		    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>descripcion</th>
+                <th>Asesor</th>            
+                <th>Observación</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+
+        </tbody>
+    </table>
+-->
+    <div id="thistorico" name="thistorico">
+	    
+    </div>
+    
+    
+	</div>
+	<div id="historial-buttons">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#historial').dialog('close')">Cancelar</a>
+	</div>
+	
+	
+	
+	
+
+
+
+
+
+
+
+<div id="subir">
+<!--subir archivo csv a la base de datos -->
 <form id="xlsSheet"
 name="xlsSheet" method="post" action="upload.php" target="_blank"
 onsubmit="return valPwd();" enctype="multipart/form-data" >
@@ -468,7 +586,93 @@ type="file" class="button" required/>
 	<!-- <a href='listar.php?hello=true'>Run PHP Function</a> -->
 	Seleccione desde que fecha se realizara la consulta<input type="date" name="fchExcel" id="fchExcel" required>
 	<input type="submit" id="excel" name="excel" onclick="fnc()"  value="Descargar " >
-	<script type="text/javascript">
+	
+</body>
+<script type="text/javascript">
+	//$("#cGestion").on("change", buscarDescripcion());
+	$( "#cGestion" ).change(function() {
+	  
+	  $("#cDescripcion").html("<option value=''>Selecciona un nivel de formación</option>");
+		$cGestion = $("#cGestion").val();
+		//alert($cGestion);
+		if($cGestion == ""){
+			$("#cGestion").html("<option value=''>Selecciona un nivel de formación</option>");
+		}
+		else{
+		$.ajax({
+			dataType: "json",
+			data: {"gestion": $cGestion},
+			url:   'buscar.php',
+			type:  'post',
+			beforeSend: function(){},
+			success: function(respuesta){
+			//lo que se si el destino devuelve algo
+			$("#cDescripcion").html(respuesta.html);
+			},
+		error:	function(xhr,err){ 
+			alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
+			}
+		});
+		}
+	});
+	
+	
+	$( "#cEstado" ).change(function() {
+	  
+	  $("#cGestion").html("<option value=''>Selecciona un nivel de formación</option>");
+		$cEstado = $("#cEstado").val();
+		//alert($cGestion);
+		if($cEstado == ""){
+			$("#cEstado").html("<option value=''>Selecciona un nivel de formación</option>");
+		}
+		else{
+		$.ajax({
+			dataType: "json",
+			data: {"idEstado": $cEstado},
+			url:   'buscar.php',
+			type:  'post',
+			beforeSend: function(){},
+			success: function(respuesta){
+			//lo que se si el destino devuelve algo
+			$("#cGestion").html(respuesta.html);
+			},
+		error:	function(xhr,err){ 
+			alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
+			}
+		});
+		}
+	});
+	
+	
+	
+	function Isncritohistorial(idInscrito){
+		
+		//alert(idInscrito);
+		//$cGestion = $("#cGestion").val();
+		//alert($cGestion);
+		if(idInscrito == ""){
+			//$("#cGestion").html("<option value=''>Selecciona un nivel de formación</option>");
+			alert('Recuerde seleccionar un inscrito');
+		}
+		else{
+		$.ajax({
+			dataType: "json",
+			data: {"idInscrito": idInscrito},
+			url:   'buscar.php',
+			type:  'post',
+			beforeSend: function(){},
+			success: function(respuesta){
+			//lo que se si el destino devuelve algo
+			$("#thistorico").html(respuesta.html);
+			},
+		error:	function(xhr,err){ 
+			alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
+			}
+		});
+		}	
+	}
+
+
 	function fnc()
 				{
 				fchExcel = $("#fchExcel").val();
@@ -492,14 +696,10 @@ type="file" class="button" required/>
 						});
 					}
 	</script>
-</body>
 </html>
 <?php
 $conex = conectaBaseDatos();
 $sql="select perfil from admin where username='$myusername'";
-//$usuario=mysql_fetch_array(mysql_query($sql,$conexion));
-//$perfil = $usuario[0];
-
 $sql=$conex->query($sql);
 $sql->execute();
 $result=$sql->fetch();

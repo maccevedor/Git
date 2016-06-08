@@ -1,27 +1,3 @@
-<html>
-<?php 
-	//echo "HTTP_REFERER : " . $_SERVER['HTTP_REFERER'] . "<br />"; 
-?>
-<head>
-<!-- Facebook Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','//connect.facebook.net/en_US/fbevents.js');
-
-fbq('init', '1714577708755028');
-fbq('track', "PageView");</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1714577708755028&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Facebook Pixel Code -->
-<meta name="google" content="notranslate" />
-</head>
-
-<body>
-
 <?php
 include('view/header.php'); 
 ?>
@@ -148,24 +124,17 @@ include('view/header.php');
 	    <div class="container">
 			<div class="row">
 				<h1 class="subtitle">DESCUENTOS</h1>
-				<div class="col-md-4">
-					• Afiliado a Compensar, descuento del 8% (solo pregrado y posgrado)<br><br>
-					• Afiliado a Colsubsidio, descuento del 8% (solo pregrado y posgrado)<br><br>
-					• Afiliado a Porvenir, descuento del 8% (solo pregrados)<br><br>
-					• Afiliado al Fondo Nacional del Ahorro, descuento del 8% (solo pregrados)<br><br>
-					• Beneficiarios de Somec, descuento del 8% (solo pregrados)
+				<div class="col-md-6">
+					• Descuento del 8% a los beneficiarios de Porvenir (primer semestre de pregrado).<br><br>
+					• Descuento del 8% a los beneficiarios de Colfondos (primer semestre de pregrado y posgrado).<br><br>
+					• Descuento del 8% a los beneficiarios del FNA (afiliado, conyugue o hijos) (primer semestre de pregrado y posgrado).<br><br>
+					• Descuento del 8% a los beneficiarios de Colsubsidio aplicado para el afiliado y grupo familiar (primer semestre de pregrado y posgrado).
 				</div>
 
-				<div class="col-md-4">
-					• Funcionarios UMB, descuento del 20%<br><br>
-					• Familiar funcionarios UMB (1er y 2do grado de consanguinidad) descuento del 10%<br><br>
-					• Egresado UMB, descuento del 10% (para segundo programa de pregrado)<br><br>
-					• En situación de discapacidad, descuento del 20%<br><br>
-					• Pepsico Alimentos ZF Ltda, descuento del 10% y 8%<br><br>
-				</div>
-
-				<div class="col-md-4">
-					• CASUR, descuento del 8% (solo pregrado y posgrado)
+				<div class="col-md-6">
+					• Descuento del 8% a los afiliados de Compensar y a sus beneficiarios (primer semestre de pregrado y posgrado).<br><br>
+					• Descuento del 8% para funcionarios, afiliados y pensionados de CASUR, como también padres, hermanos, cónyuges e hijos (primer semestre de pregrado y posgrado).<br><br>
+					• Descuento del 10% Funcionarios y afiliados a Positiva y beneficiarios (hijos o cónyugues) (primer semestre de pregrado y posgrado).
 				</div>
 			</div>
 		</div>

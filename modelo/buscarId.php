@@ -16,18 +16,15 @@ if(isset($_POST['identificacion'])){
 		$email = $registro['Email'];
 		$programa = $registro['Programa'];
 		$id = $registro['Id'];
+		$asesor = $registro['asesor'];
 		//echo $nombre,$apellido,$ciudad,$email ;
 		//exit;
-		$array = array($nombre,$apellido,$telefono,$ciudad,$email,$programa,$id);
+		$array = array($nombre,$apellido,$telefono,$ciudad,$email,$programa,$asesor,$id);
 
 	}
-	
-	//$respuesta = array("html"=>$html);
-	//$respuesta = array("html"=>$array[1]);
+
 	$respuesta = array($array);
 
-
-	//$respuesta = $html;
 	echo json_encode($respuesta);
 }
 

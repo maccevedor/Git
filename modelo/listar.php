@@ -35,17 +35,17 @@
 	<script type="text/javascript">
 		function llamados () {
 			$('#dlg').dialog('close');		// close the dialog
-						$('#dg').datagrid('reload');	// reload the user data
-						$.messager.show({
-							title: 'Datos',
-							msg: '<?php echo $llamar; ?>'
-						});
+			$('#dg').datagrid('reload');	// reload the user data
+			$.messager.show({
+				title: 'Datos',
+				msg: '<?php echo $llamar; ?>'
+			});
 		}
 		//Esta funcion se encarga de ocultar las funciones de administrador
 		function ocultar()
 			{
 			document.getElementById('master').style.display='none';
-			document.getElementById('subir').style.display='none';
+			//document.getElementById('subir').style.display='none';
 			}
 		//Realiza la creacion de un registro
 		function newUser(){
@@ -250,6 +250,7 @@
 				<th field="Nombre" width="50">Nombre</th>
 				<th field="Apellido" width="50">Apellido</th>
 				<th field="Telefono" width="50">Telefono</th>
+				<th field="celular" width="50">Celular</th>
 				<th field="Email" width="100">Email</th>
 				<th field="Programa" width="100" sortable="true">Programa</th>
 				<th field="Fch" width="100" sortable="true">Fecha</th>
@@ -262,14 +263,9 @@
 				<th field="url" width="100"  sortable="true">url</th>
 				<th field="asesor" width="100"  sortable="true">asesor</th>
 				<th field="descripcion" width="100"  sortable="true">descripcion</th>
-				<!-- <th field="Estado" width="100">Estado1</th> -->
-				<!-- <th field="cPrograma" width="100"></th> -->
 			</tr>
 		</thead>
-
 	</table>
-
-
 	<div id="toolbar">
 
 		<div id="master">
@@ -345,12 +341,10 @@
 			</div>
 			<div class="fitem">
 			<label>Ciudad:</label>
-
                  <select  name="cCiudad" id="cCiudad" 	 >
                    <option value="">Selecciona una ciudad</option>
-				                                <?php
+				<?php
 				$ciudades = dameCiudad();
-
 				foreach($ciudades as $indice => $registro){
 				echo "<option value=".$registro['id'].">".$registro['municipio'].' -'.$registro['estado']."</option>";
 				}
@@ -359,12 +353,10 @@
               </div>
 			<div class="fitem">
 				<label>Programa:</label>
-				<!-- <input name="Programa" class="easyui-validatebox" required="true"> -->
 				<select name="cPrograma"  id="cPrograma" class="easyui-validatebox">
 					<option value="">- Seleccione un  nivel formación -</option>
 						<?php
 							$Programa = programa();
-
 							foreach($Programa as $indice => $registro){
 							echo "<option value=".$registro['id'].">".$registro['Programa']."</option>";
 							}
@@ -376,9 +368,7 @@
 				<select name="cAsesor"  id="cAsesor" class="easyui-validatebox">
 					<option value="">- Asesor 1-</option>
 						<?php
-							//echo 'hola';
 							$asesor = administradores();
-							//print_r($asesor);exit;
 							foreach($asesor as $indice => $registro){
 							echo "<option value=".$registro['id'].">".$registro['username']."</option>";
 							}
@@ -390,9 +380,7 @@
 				<select name="cEstado"  id="cEstado" class="easyui-validatebox">
 					<option value="">- Seleccionar estado 1-</option>
 						<?php
-							//echo 'hola';
 							$estado = estado();
-							//print_r($asesor);exit;
 							foreach($estado as $indice => $registro){
 							echo "<option value=".$registro['id'].">".$registro['nombre']."</option>";
 							}
@@ -404,9 +392,7 @@
 				<select name="cGestion"  id="cGestion" class="easyui-validatebox">
 					<option value="">- Seleccione una-</option>
 						<?php
-							//echo 'hola';
 							$gestion = gestion();
-							//print_r($gestion);exit;
 							foreach($gestion as $indice => $registro){
 							echo "<option value=".$registro['id'].">".$registro['nombre']."</option>";
 							}
@@ -418,9 +404,7 @@
 				<select name="cDescripcion"  id="cDescripcion" class="easyui-validatebox">
 					<option value="">--Descripción-</option>
 					<?php
-							//echo 'hola';
 							$gestion = GestionDescripcion();
-							//print_r($gestion);exit;
 							foreach($gestion as $indice => $registro){
 							echo "<option value=".$registro['id'].">".$registro['nombre']."</option>";
 							}
@@ -443,33 +427,22 @@
 				<label>Fuente:</label>
 				<!-- <input name="Fuente" class="easyui-validatebox" validType="text"> -->
 				<select id="Fuente" class="easyui-combobox" name="Fuente" style="width:200px;">
-			    <option value="UmbVirtual">UmbVirtual(Home)</option>
-			    <option value="Programas">UmbVirtual(Programas)</option>
-			     <option value="Indexcol">Indexcol</option>
-                <option value="Tolima">Tolima</option>
-                <option value="Oficina Ibague">Oficina Ibague</option>
-			    <option value="Home">Toma de Home</option>
-			    <option value="Chat">Chat</option>
-			    <option value="Referido">Referido</option>
-			    <option value="Radio">Radio</option>
-			    <option value="Revista">Revista</option>
-			    <option value="Teléfono">Teléfono</option>
-			    <option value="Tv(Caracol)">Tv(Caracol)</option>
-			    <option value="Tv(Fox)">Tv(Fox)</option>
-			    <option value="Tv(Warner)">Tv(Warner)</option>
+			    <option value="1">UmbVirtual(Home)</option>
+			    <option value="2">UmbVirtual(Programas)</option>
+			     <option value="3">Indexcol</option>
+                <option value="4">Tolima</option>
+                <option value="5">Oficina Ibague</option>
+			    <option value="6">Toma de Home</option>
+			    <option value="7">Chat</option>
+			    <option value="8">Referido</option>
+			    <option value="9">Radio</option>
+			    <option value="10">Revista</option>
+			    <option value="11">Teléfono</option>
+			    <option value="12">Tv(Caracol)</option>
+			    <option value="13">Tv(Fox)</option>
+			    <option value="14">Tv(Warner)</option>
 				</select>
 			</div>
-<!--
-			<div class="fitem">
-			<label>Estado:</label>
-			<select id="umb" class="easyui-combobox" name="umb" style="width:200px;">
-			    <option value="Aspirante">Aspirante</option>
-			    <option value="Inscrito">Inscrito</option>
-			     <option value="Asistente">Asistente</option>
-			    <option value="Activo">Activo</option>
-			</select>
-			</div>
--->
             <div class="fitem">
                 <label>Grupo sanguíneo:</label>
                 <select id="Rh" class="easyui-combobox" name="Rh" style="width:200px;">
@@ -484,12 +457,7 @@
                 </select>
             </div>
             	<input type="hidden" id="idUser" name="idUser" value="<?php echo $idUser ?>">
-<!--
-			<div class="fitem">
-				<label>Foto:</label>
-				<img id="mostrarfoto" class="mostrarfoto" name="mostarfoto" src="" alt="Smiley face" height="60" width="60"><br><br>
-				<!-- <input type="file" id="foto" name="foto" class="easyui-validatebox" data-max-size="2048" accept="image/*,.dmg" > -->
-				<input type="file" id="foto" name="foto" class="easyui-validatebox" data-max-size="2048" accept="image/*" >
+            	<input type="file" id="foto" name="foto" class="easyui-validatebox" data-max-size="2048" accept="image/*" >
 			</div>
 
 			<input type="hidden" name="User" class="easyui-validatebox"  value="<?php echo $myusername ?>">
@@ -500,89 +468,30 @@
 		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Guardar</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancelar</a>
 	</div>
-
-
-
-
-
-
-
-
-
-
 	<div id="historial" class="easyui-dialog" style="width:600px;height:600px;padding:20px 30px" closed="true" buttons="#historial-buttons">
-<!--
-		<div class="ftitle">Historial Del Estudiante</div>
-
-
-		    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>descripcion</th>
-                <th>Asesor</th>            
-                <th>Observación</th>
-                <th>Fecha</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-
-        </tbody>
-    </table>
--->
     <div id="thistorico" name="thistorico">
 	    
     </div>
-    
-    
 	</div>
 	<div id="historial-buttons">
 		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#historial').dialog('close')">Cancelar</a>
 	</div>
 	
-	
-	
-	
-
-
-
-
-
-
-
 <div id="subir">
-<!--subir archivo csv a la base de datos -->
-<form id="xlsSheet"
-name="xlsSheet" method="post" action="upload.php" target="_blank"
-onsubmit="return valPwd();" enctype="multipart/form-data" >
-
-<td align="left">Archivo CSV a ingresar: </td>
-        <td align="left"><input name="filename"
-type="file" class="button" required />
-
- <input name="submit" type="submit"  value="Subir archivo"
-/>
-
-</form><br>
-
-<form id="xlsSheet"
-name="xlsSheet" method="post" target="_blank" action="landing.php"
-onsubmit="return valPwd();" enctype="multipart/form-data" >
-
-<td align="left">Archivo CSV de las campañas : </td>
-        <td align="left"><input name="filename"
-type="file" class="button" required/>
-
- <input name="submit" type="submit" value="Subir archivo"/>
-
-
-</form>
+	<!--subir archivo csv a la base de datos -->
+	<form id="xlsSheet" name="xlsSheet" method="post" action="upload.php" target="_blank" onsubmit="return valPwd();" enctype="multipart/form-data" >
+		<td align="left">Archivo CSV a ingresar: </td>
+	    <td align="left"><input name="filename"type="file" class="button" required />
+		<input name="submit" type="submit"  value="Subir archivo"/>
+	</form><br>
+	
+	<form id="xlsSheet" name="xlsSheet" method="post" target="_blank" action="landing.php" onsubmit="return valPwd();" enctype="multipart/form-data" >
+		<td align="left">Archivo CSV de las campañas : </td>
+		<td align="left"><input name="filename"	type="file" class="button" required/>
+		<input name="submit" type="submit" value="Subir archivo"/>	
+	</form>
 </div>
+
 	<!-- <a href='listar.php?hello=true'>Run PHP Function</a> -->
 	Seleccione desde que fecha se realizara la consulta<input type="date" name="fchExcel" id="fchExcel" required>
 	<input type="submit" id="excel" name="excel" onclick="fnc()"  value="Descargar " >
@@ -616,7 +525,6 @@ type="file" class="button" required/>
 		}
 	});
 	
-	
 	$( "#cEstado" ).change(function() {
 	  
 	  $("#cGestion").html("<option value=''>Selecciona un nivel de formación</option>");
@@ -643,15 +551,8 @@ type="file" class="button" required/>
 		}
 	});
 	
-	
-	
 	function Isncritohistorial(idInscrito){
-		
-		//alert(idInscrito);
-		//$cGestion = $("#cGestion").val();
-		//alert($cGestion);
 		if(idInscrito == ""){
-			//$("#cGestion").html("<option value=''>Selecciona un nivel de formación</option>");
 			alert('Recuerde seleccionar un inscrito');
 		}
 		else{
@@ -671,19 +572,11 @@ type="file" class="button" required/>
 		});
 		}	
 	}
-
-
 	function fnc()
 				{
 				fchExcel = $("#fchExcel").val();
-				//alert(fchExcel);
 				window.open("excel.php?fchExcel="+fchExcel);
 				}
-						//$("#c").on("onclick", buscarPrograma);
-
-
-						//console.log(fchExcel);
-
 						function excel(){
 
 						//exit();

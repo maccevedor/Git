@@ -18,7 +18,7 @@ fputcsv($handle, array('TipoId','Identificacion','Nombre','Apellido','FchNacimie
    
 if (is_array($list))
 {   
-foreach($list as $row) { fputcsv($handle, array($row['TipoId'],$row['Identificacion'], utf8_decode($row['Nombre']),utf8_decode($row['Apellido']),$row['FchNacimiento'],$row['LNacimiento'],utf8_decode($row['Direccion']),$row['Ciudad'],$row['Barrio'],$row['Telefono'],$row['Celular'],utf8_decode($row['Email']),$row['Genero'],$row['EstadoCivil'],$row['Fuente'],$row['Programa'],$row['Fch'],$row['Estado'],$row['FchRespuesta'],utf8_decode($row['Nprograma']),$row['Observacion'],utf8_decode($row['municipio']))); }  
+foreach($list as $row) { fputcsv($handle, array($row['TipoId'],$row['Identificacion'], utf8_decode($row['Nombre']),utf8_decode($row['Apellido']),$row['FchNacimiento'],$row['LNacimiento'],utf8_decode($row['Direccion']),$row['Ciudad'],$row['Barrio'],$row['Telefono'],$row['Celular'],utf8_decode($row['Email']),$row['Genero'],$row['EstadoCivil'],$row['Fuente'],utf8_decode($row['Programa']),$row['Fch'],$row['Estado'],$row['FchRespuesta'],utf8_decode($row['Nprograma']),$row['Observacion'],utf8_decode($row['municipio']))); }  
 fclose($handle);   
 header("Location: $filename");
 }else

@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 include("../clases/clsInscripcion.php"); 
 include("../clases/clsEntrevista.php");
 include("../clases/clsAcademica.php"); 
@@ -470,7 +470,7 @@ if ($recipients = $swift->send($message, $failures))
                                       <p class="pasos">Puedes cancelar en las siguientes entidades bancarias a nombre de UNIVERSIDAD MANUELA BELTRÁN:</p>
                                       
                                       <div class="bank"> <img src="../img/png/davivienda.png" border="0">
-                                        <p>Cuenta Corriente N. 457000098261</p>
+                                        <p>Cuenta Ahorros N. 457000098261</p>
                                       </div>
                                       <div class="bank"> <img src="../img/png/banco-popular.png" border="0">
                                         <p>Cuenta Corriente N. 011-16525-5</p>

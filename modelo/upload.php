@@ -3,8 +3,6 @@ include("conexion.php");
 if(isset($_POST['submit'])) {
 //Connect to Database
 $conex= conectaBaseDatos();
-//$db = new PDO('mysql:host=localhost;dbname=dbname;charset=utf8',
-//'dbuser', 'dbpassword');
  
 //Upload File
 if (is_uploaded_file($_FILES['filename']['tmp_name'])) {
@@ -23,41 +21,58 @@ while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
 	(Nombre, Apellido,Email,Telefono,municipio,programa,Descripcion,Fuente,Observacion,Asesor,fch)
 	values('$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','$data[5]','$data[6]','$data[7]','$data[8]','$data[9]','$data[10]')");
 */
-
-	$validarEmail = filter_var($data[2], FILTER_VALIDATE_EMAIL);
+	$num = count($data);
+    $count++;
+    if($count == 1){ $count++; continue; }
+    
+           
+	$validarEmail = filter_var($data[2], FILTER_VALIDATE_EMAIL);	
 	
-	
-	if(strlen($data[3]) == 0 && strlen($data[4]) == 0){
+	if(strlen($data[3]) == 1 && strlen($data[4]) == 1){
 		
 		 echo "Se debe tener al menos un teléfono o celular este email ".$data[2];
          echo '<br>';
          continue;
 	}
 	
-	 if (!$validarEmail) {
-                echo ." Este correo no es permitido".$data[2];
-                echo '<br>';
-                continue;
-            }
-    
-    if (!ctype_digit($data[4])) {
-        echo "Este numero no es correcto , no tiene solo números ".$data[4];
+	//echo $data[4]."<br>";
+	
+	if(strlen($data[4]) != 1){
+		
+		
+		if (!ctype_digit($data[4])) 
+	   {
+		        echo "Este numero de celular no es correcto , no tiene solo números ".$data[2];
+		        echo '<br>';
+		        continue;
+	    }
+		    
+		if (strlen($data[4]) != 10) 
+	    {
+		    echo "Este numero celular no es correcto no tiene 10 dígitos ".$data[2];
+		    echo '<br>';
+		    continue;
+	    }		
+	}
+	
+	 if (!$validarEmail)
+	 {
+        echo " Este correo no es permitido".$data[2];
         echo '<br>';
         continue;
-    }
-    
-    if (strlen($data[4]) != 10) 
-    {
-	    echo "Este numero celular no es correcto no tiene 10 dígitos ".$data[4];
-	    echo '<br>';
-	    continue;
-    }
+	}
+
+ 
+	$observacion = utf8_encode($data[9]);
+	$nombre = utf8_encode($data[0]);
+	$apellido = utf8_encode($data[1]);
  
 	$import = "INSERT into  estudiante
 	(Nombre, Apellido,Email,Telefono,celular,ciudad,programa,Descripcion,Fuente,Observacion,Asesor,fch)
-	values('$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','$data[5]','$data[6]','$data[7]','$data[8]','$data[9]','$data[10]','$data[11]')";
-	//echo $import;
+	values('$nombre','$apellido','$data[2]','".($data[3])."','$data[4]','$data[5]',$data[6],$data[7],'$data[8]','$observacion',$data[10],'$data[11]')";
+	//echo $import.'<br>';
 	$insertImport = $conex->query($import);	
+	//print_r($insertImport);echo '<br>';
 	$count++;
 	}	 
 	fclose($handle);
@@ -74,6 +89,5 @@ while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
 -->
 </head>
 <body>
-hola
 </body>
 </html>

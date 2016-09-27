@@ -29,6 +29,8 @@ function dameFormacion(){
 
 //Segun la formacion seleccionada lsita los programas
 function damePrograma($formacion = ''){
+	//Limpiar la variable
+	$formacion = strip_tags($formacion);
 	$resultado = false;
 	$consulta = "SELECT * FROM programa";
 	

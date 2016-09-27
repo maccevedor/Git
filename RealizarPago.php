@@ -207,7 +207,7 @@ include("modelo/funciones.php");
                                   <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse1"> <i class="icon-plus-sign"></i> Opción 1: Pago en universidad </a> </div>
                                   <div id="collapse1" class="accordion-body collapse" style="height: 0px;">
                                     <div class="accordion-inner">
-                                      <p class="pasos">Puedes acercarte a una de nuestras sedes en Bogotá, Cajicá o Bucaramanga y cancelar en la Tesorería UMB con pago en efectivo, tarjeta de crédito o débito con documento de identidad. Recuerda enviar el comprobante de pago al correo <a href="mailto:claudia.santacruz@umb.edu.co" title="Enviar comprobante">claudia.santacruz@umb.edu.co</a> o <a href="mailto:liset.abreu@umb.edu.co" title="Enviar comprobante">liset.abreu@umb.edu.co</a>, según el programa académico seleccionado.</p>
+                                      <p class="pasos">Puedes acercarte a una de nuestras sedes en Bogotá, Cajicá o Bucaramanga y cancelar en la Tesorería UMB con pago en efectivo, tarjeta de crédito o débito con documento de identidad. Recuerda enviar el comprobante de pago al correo <a href="mailto:claudia.santacruz@umb.edu.co" title="Enviar comprobante">admisiones.promocionvirtual@umb.edu.co</a> y <a href="mailto:promocion.umbvirtual4@umb.edu.co" title="Enviar comprobante">promocion.umbvirtual4@umb.edu.co</a>, según el programa académico seleccionado.</p>
                                       <p class="pasos">Códigos para pago de inscripción</p>
                                       <div class="table-1">
                                         <table width="100%">

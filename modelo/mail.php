@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include_once "conexion.php";
 //Se llama a la libreria de envio de correos
 include_once "../lib/Swift/swift_required.php";
@@ -7,13 +7,13 @@ $id = intval($_REQUEST['id']);
 $email = $_REQUEST['Email'];
 $programa = $_REQUEST['cPrograma'];
 
-
 $conex = conectaBaseDatos();
 $sql="select * from admin where id='$usuario'";
 $usuarios = $conex->prepare($sql);
 $usuarios->execute();
 $row = $usuarios->fetch(); 
 $myusername= $row["username"];
+$asesorEmail = $row["email"];
 $sede= $row["sede"];
 $cargo= $row["cargo"];
 $foto= $row["foto"];
@@ -73,7 +73,7 @@ $swift = Swift_Mailer::newInstance($transport);
 
 $message = new Swift_Message($subject);
 $message->setFrom($from);
-$message->setCc(array($destino => "UMB virtual"));
+$message->setCc(array($asesorEmail => "UMB virtual"));
 //$message->attach(Swift_Attachment::fromPath('../img/pensum/financiacion.pdf')->setFilename('financiacion.pdf'));
 //$message->attach(Swift_Attachment::fromPath('../img/pensum/'.$programa.'.jpg')->setFilename('pensum.jpg'));
 //$message->setBody($html, 'text/html');
@@ -184,7 +184,7 @@ $message->setBody(
 													</td>
 													<td bgcolor="cd3c39" align="center" style="padding:12px 35px; border-radius:20px; text-transform:uppercase; font-weight:bold; font-size:11px; line-height:16px; font-family:'.'Open Sans'.', Arial, sans-serif; color:#ffffff; margin:0 !important; mso-line-height-rule:exactly; letter-spacing:1px">
 														 <span>
-															<a href="http://umbvirtual.edu.co/portfolio-items/artes-gastronomicas" target="_blank" style="color:#ffffff; text-decoration:none; font-weight:bold;" target="_blank" title="Admisiones">VISITAR PÁGINA DEL PROGRAMA</a>
+															<a href="'.$url.'" target="_blank" style="color:#ffffff; text-decoration:none; font-weight:bold;" target="_blank" title="Admisiones">VISITAR PÁGINA DEL PROGRAMA</a>
 														 </span>
 													</td>
 													<td width="20">
@@ -491,7 +491,7 @@ $message->setBody(
 																		<tr>
 																			<td align="center" style="font-family:'.'open sans'.', sans-serif; font-size:13px; font-weight:300; color:#6e6e6e; line-height:22px">
 																				<span>
-																					Cuenta Corriente <br>
+																					Cuenta Ahorros<br>
 																					N. 457000098261<br>
 																					(formato empresarial)
 																				</span>
@@ -566,7 +566,7 @@ $message->setBody(
 											<table border="0" align="center" width="" cellpadding="0" cellspacing="0" style="border-collapse:collapse !important">
 												<td bgcolor="transparent" align="center" valign="middle" style="display:block; padding:10px 15px; border-radius:25px; text-transform:uppercase; font-weight:bold; font-size:11px; line-height:16px; font-family:'.'open sans'.', Arial, sans-serif; color:#56af2b; margin:0 !important; mso-line-height-rule:exactly; letter-spacing:1px; border:3px solid #ffffff">
 													<span>
-														<a href="mailto:liset.abreu@umb.edu.co" title="Redactar un correo" style="color:#ffffff">INSCRIPCIONES</a>
+														<a href="mailto:admisiones.promocionvirtual@umb.edu.co" title="Redactar un correo" style="color:#ffffff">INSCRIPCIONES</a>
 													</span>
 												</td>
 											</table>
@@ -663,7 +663,7 @@ $message->setBody(
 											<table border="0" align="center" width="" cellpadding="0" cellspacing="0" style="border-collapse:collapse !important">
 												<td bgcolor="transparent" align="center" valign="middle" style="display:block; padding:10px 15px; border-radius:25px; text-transform:uppercase; font-weight:bold; font-size:11px; font-family:'.'open sans'.', Arial, sans-serif; color:#56af2b; margin:0 !important; mso-line-height-rule:exactly; letter-spacing:1px; border:3px solid #ffffff">
 													<span>
-														<a href="mailto:'.$myusername.'@umb.edu.co" title="Redactar un correo" style="color:#ffffff">'.$myusername.'</a>
+														<a href="mailto:'.$asesorEmail.'" title="Redactar un correo" style="color:#ffffff">'.$myusername.'</a>
 													</span>
 												</td>
 											</table>

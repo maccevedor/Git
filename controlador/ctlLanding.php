@@ -4,6 +4,8 @@ include("../modelo/conexion.php");
 include("../modelo/funciones.php");
     //crear el objeto con base en la clase
 $fuente= $_REQUEST['fuente'];
+	//echo $fuente;exit;
+$fecha=date('Y-m-d H:i:s');
 $Indexcol="";
 $Conversion="";
 $Manager="";
@@ -12,10 +14,10 @@ $Manager="";
     {
     include('../lib/Indexcol.php');
     }elseif($fuente=="eikon"){
-    include('../lib/eikon.php');	    
+    //include('../lib/eikon.php');	
+    //echo $eikon;
+    //exit;    
     }
-
-
   $conex = conectaBaseDatos();
 
 
@@ -33,7 +35,7 @@ $Manager="";
     $objPag->setCorreo($_REQUEST['correo']);
     $objPag->setTelefono($_REQUEST['telefono']);
     $objPag->setPrograma($_REQUEST['programa']);
-    $objPag->setFch($_REQUEST['fch']);
+    $objPag->setFch($fecha);
     $objPag->setFuente($_REQUEST['fuente']);
     $objPag->setUrl($_REQUEST['url']);
 
@@ -213,9 +215,11 @@ if (empty($result)){
     if($fuente=="Indexcol" or $fuente=="Youtube" or $fuente=="Facebook" or $fuente=="Linkedin")
     {
 	     echo $Manager; 
-    } elseif($fuente=="eikon")
+    } elseif($fuente=="eikon" or $fuente=="Eikon")
     {
-		echo $eikon;						    
+		include('../lib/eikon.php');	
+		echo $eikon;
+		//exit();						    
     }
 	?>
     

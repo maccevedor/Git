@@ -106,9 +106,11 @@
 						left join descripcion d on d.id=e.descripcion
 						left join gestion g on d.id=d.id
 						left join estado es on es.id=g.idEstado
-						inner join  programa p on e.Programa=p.id where e.Estado='$estado' and muni.relacion $SqlEstados and" . $where . " 
+						inner join  programa p on e.Programa=p.id where e.Estado='$estado' 
+						and" . $where . " 
 						group by e.id order by e.id
 						limit $offset,$rows");
+						//print_r($sql);
 						$rows=$sql->fetchAll(PDO::FETCH_ASSOC);
 
 						foreach($rows as $row){

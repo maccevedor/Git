@@ -1,4 +1,4 @@
-﻿ <?php
+ <?php
  require_once("conexion.php");
  require_once('lock.php');
  require_once('funciones.php');
@@ -11,6 +11,7 @@
 		$contactados = $conex->prepare($sql);
 		$contactados->execute();
 		$row = $contactados->fetch();
+		
 		//echo $row['total'];
 		if($row > 0){
 			$llamar='Recuerda que tienes '.$row['total'].' estudiosos por contactar';
@@ -49,6 +50,7 @@
 			}
 		//Realiza la creacion de un registro
 		function newUser(){
+			
 			$('#dlg').dialog('open').dialog('setTitle','New User');
 			$('#fm').form('clear');
 			url = 'agregarEstudiante.php';
@@ -96,6 +98,7 @@
 		}
 		//Se encarga de guardar los estudiantes nuevos
 		function saveUser(){
+			
 			$('#fm').form('submit',{
 				url: url,
 				onSubmit: function(){
@@ -119,6 +122,7 @@
 							msg: result.msg
 						});
 					}
+					location.reload();
 				}
 			});
 		}
@@ -234,6 +238,7 @@
         </div>
 
 <body>
+
 	<h2>Usuario:<?php echo $myusername ?></h2><br>
 	<h2>Lista</h2>
 	<div class="demo-info" style="margin-bottom:10px">
@@ -254,14 +259,15 @@
 				<th field="Email" width="100">Email</th>
 				<th field="Programa" width="100" sortable="true">Programa</th>
 				<th field="Fch" width="100" sortable="true">Fecha</th>
-				<th field="FchRespuesta" width="100">Fecha Respuesta</th>
+				<!--<th field="FchRespuesta" width="100">Fecha Respuesta</th>-->
 				<th field="Observacion" width="100">Observacion</th>
 				<th field="Fuente" width="100">Fuente</th>
 				<th field="umb" width="100">Estado</th>
 				<th field="Municipio" width="100">Ciudad</th>
 				<th field="contacto" width="100"  sortable="true">contacto</th>
-				<th field="url" width="100"  sortable="true">url</th>
+				<!--<th field="url" width="100"  sortable="true">url</th>-->
 				<th field="asesor" width="100"  sortable="true">asesor</th>
+				<!--th field="gestion" width="100"  sortable="true">Gestion</th>-->
 				<th field="descripcion" width="100"  sortable="true">descripcion</th>
 			</tr>
 		</thead>
@@ -302,7 +308,7 @@
                     <label>Programa:</label>
                     <!-- <input name="Programa" class="easyui-validatebox" required="true"> -->
                     <select onChange="organizar();" name="oPrograma"  id="oPrograma" class="easyui-validatebox">
-                        <option value="0">- Seleccione un  nivel formación -</option>
+                        <option value="0">- Seleccione un  nivel formaci�n -</option>
                             <?php
                                 $Programa = programa();
 
@@ -314,7 +320,7 @@
 			</div>
 
 	<div id="dlg" class="easyui-dialog" style="width:600px;height:600px;padding:20px 30px" closed="true" buttons="#dlg-buttons">
-		<div class="ftitle">Información Del Estudiante</div>
+		<div class="ftitle">Informaci�n Del Estudiante</div>
 
 
 		<form id="fm" method="post" novalidate enctype="multipart/form-data">
@@ -354,7 +360,7 @@
 			<div class="fitem">
 				<label>Programa:</label>
 				<select name="cPrograma"  id="cPrograma" class="easyui-validatebox">
-					<option value="">- Seleccione un  nivel formación -</option>
+					<option value="">- Seleccione un  nivel formacion -</option>
 						<?php
 							$Programa = programa();
 							foreach($Programa as $indice => $registro){
@@ -366,7 +372,7 @@
 			<div class="fitem">
 				<label>Asesor:</label>
 				<select name="cAsesor"  id="cAsesor" class="easyui-validatebox">
-					<option value="">- Asesor 1-</option>
+					<option value="">-Seleccionar Asesor-</option>
 						<?php
 							$asesor = administradores();
 							foreach($asesor as $indice => $registro){
@@ -376,19 +382,19 @@
 					</select>
 			</div>
 			<div class="fitem">
-				<label>Estado::</label>
-				<select name="cEstado"  id="cEstado" class="easyui-validatebox">
+				<label>Estado:</label>
+				<select name="umb"  id="umb" class="easyui-validatebox">
 					<option value="">- Seleccionar estado 1-</option>
 						<?php
 							$estado = estado();
 							foreach($estado as $indice => $registro){
-							echo "<option value=".$registro['id'].">".$registro['nombre']."</option>";
+							echo "<option value=".$registro['nombre'].">".$registro['nombre']."</option>";
 							}
 						?>
 					</select>
 			</div>
 			<div class="fitem">
-				<label>Gestión:</label>
+				<label>Gesti�n:</label>
 				<select name="cGestion"  id="cGestion" class="easyui-validatebox">
 					<option value="">- Seleccione una-</option>
 						<?php
@@ -396,13 +402,13 @@
 							foreach($gestion as $indice => $registro){
 							echo "<option value=".$registro['id'].">".$registro['nombre']."</option>";
 							}
-						?>
+							?>
 					</select>
 			</div>
 			<div class="fitem">
-				<label>Descripción:</label>
+				<label>Descripci�n:</label>
 				<select name="cDescripcion"  id="cDescripcion" class="easyui-validatebox">
-					<option value="">--Descripción-</option>
+					<option value="">--Descripci�n-</option>
 					<?php
 							$gestion = GestionDescripcion();
 							foreach($gestion as $indice => $registro){
@@ -437,14 +443,14 @@
 			    <option value="8">Referido</option>
 			    <option value="9">Radio</option>
 			    <option value="10">Revista</option>
-			    <option value="11">Teléfono</option>
+			    <option value="11">Tel�fono</option>
 			    <option value="12">Tv(Caracol)</option>
 			    <option value="13">Tv(Fox)</option>
 			    <option value="14">Tv(Warner)</option>
 				</select>
 			</div>
             <div class="fitem">
-                <label>Grupo sanguíneo:</label>
+                <label>Grupo sangu�neo:</label>
                 <select id="Rh" class="easyui-combobox" name="Rh" style="width:200px;">
                     <option value="O+">O+</option>
                     <option value="A+">A+</option>
@@ -485,11 +491,11 @@
 		<input name="submit" type="submit"  value="Subir archivo"/>
 	</form><br>
 	
-	<form id="xlsSheet" name="xlsSheet" method="post" target="_blank" action="landing.php" onsubmit="return valPwd();" enctype="multipart/form-data" >
-		<td align="left">Archivo CSV de las campañas : </td>
+	<!--<form id="xlsSheet" name="xlsSheet" method="post" target="_blank" action="landing.php" onsubmit="return valPwd();" enctype="multipart/form-data" >
+		<td align="left">Archivo CSV de las campa�as : </td>
 		<td align="left"><input name="filename"	type="file" class="button" required/>
 		<input name="submit" type="submit" value="Subir archivo"/>	
-	</form>
+	</form>-->
 </div>
 
 	<!-- <a href='listar.php?hello=true'>Run PHP Function</a> -->
@@ -501,11 +507,11 @@
 	//$("#cGestion").on("change", buscarDescripcion());
 	$( "#cGestion" ).change(function() {
 	  
-	  $("#cDescripcion").html("<option value=''>Selecciona un nivel de formación</option>");
+	  $("#cDescripcion").html("<option value=''>Selecciona un nivel de formaci�n</option>");
 		$cGestion = $("#cGestion").val();
 		//alert($cGestion);
 		if($cGestion == ""){
-			$("#cGestion").html("<option value=''>Selecciona un nivel de formación</option>");
+			$("#cGestion").html("<option value=''>Selecciona un nivel de formaci�n</option>");
 		}
 		else{
 		$.ajax({
@@ -527,11 +533,11 @@
 	
 	$( "#cEstado" ).change(function() {
 	  
-	  $("#cGestion").html("<option value=''>Selecciona un nivel de formación</option>");
+	  $("#cGestion").html("<option value=''>Selecciona un nivel de formaci�n</option>");
 		$cEstado = $("#cEstado").val();
 		//alert($cGestion);
 		if($cEstado == ""){
-			$("#cEstado").html("<option value=''>Selecciona un nivel de formación</option>");
+			$("#cEstado").html("<option value=''>Selecciona un nivel de formaci�n</option>");
 		}
 		else{
 		$.ajax({

@@ -184,17 +184,17 @@ include("../modelo/funciones.php");
   //Esta condicion es debido  al municipio donde vive el futuro estudioso 
   if($ciudadE==776)
     {
-      $destino ="laura.toro@umb.edu.co";
-      $coordinador ="tatiana.rubio@umb.edu.co";
+      $destino ="promocion.umbvirtual4@umb.edu.co";
+      $coordinador ="admisiones.promocionvirtual@umb.edu.co";
     }else{  
       if($programaP =='1' || $programaP =='2' || $programaP =='5'|| $programaP =='8' || $programaP =='9' || $programaP =='12' || $programaP =='13' || $programaP =='14' || $programaP =='19'){
-        $destino ="tatiana.nunez@umb.edu.co";
-        $coordinador ="diana.serrano@umb.edu.co";
+        $destino ="admisiones.promocionvirtual@umb.edu.co";
+        $coordinador =" promocion.umbvirtual4@umb.edu.co";
       }
       else
       {
          $destino="Liset.abreu@umb.edu.co";
-         $coordinador ="diana.serrano@umb.edu.co";
+         $coordinador ="promocion.umbvirtual4@umb.edu.co";
       }
     }
    
@@ -244,7 +244,7 @@ $swift = Swift_Mailer::newInstance($transport);
 
 $message = new Swift_Message($subject);
 $message->setFrom($from);
-$message->setCc(array("mauricio.acevedo@umb.edu.co" => "UMB virtual"));
+//$message->setCc(array("mauricio.acevedo@umb.edu.co" => "UMB virtual"));
 $message->setBody($html, 'text/html');
 $message->setTo($to);
 $message->addPart($text, 'text/plain');
@@ -441,7 +441,7 @@ if ($recipients = $swift->send($message, $failures))
                                   <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse1"> <i class="icon-plus-sign"></i> Opción 1: Pago en universidad </a> </div>
                                   <div id="collapse1" class="accordion-body collapse" style="height: 0px;">
                                     <div class="accordion-inner">
-                                      <p class="pasos">Puedes acercarte a una de nuestras sedes en Bogotá, Cajicá o Bucaramanga y cancelar en la Tesorería UMB con pago en efectivo, tarjeta de crédito o débito con documento de identidad. Recuerda enviar el comprobante de pago al correo <a href="mailto:tatiana.nunez@umb.edu.co" title="Enviar comprobante">tatiana.nunez@umb.edu.co</a> o <a href="mailto:liset.abreu@umb.edu.co" title="Enviar comprobante">liset.abreu@umb.edu.co</a>, según el programa académico seleccionado.</p>
+                                      <p class="pasos">Puedes acercarte a una de nuestras sedes en Bogotá, Cajicá o Bucaramanga y cancelar en la Tesorería UMB con pago en efectivo, tarjeta de crédito o débito con documento de identidad. Recuerda enviar el comprobante de pago al correo <a href="mailto:admisiones.promocionvirtual@umb.edu.co" title="Enviar comprobante">admisiones.promocionvirtual@umb.edu.co</a> y <a href="mailto:promocion.umbvirtual4@umb.edu.co" title="Enviar comprobante">promocion.umbvirtual4@umb.edu.co</a>, según el programa académico seleccionado.</p>
                                       <p class="pasos">Códigos para pago de inscripción</p>
                                       <div class="table-1">
                                         <table width="100%">
@@ -511,7 +511,7 @@ if ($recipients = $swift->send($message, $failures))
                                             </tbody>
                                           </table>
                                         </div>
-                                        <p class="pasos">Recuerde enviar el comprobante de pago al correo <a href="mailto:tatiana.nunez@umb.edu.co" title="Enviar comprobante">tatiana.nunez@umb.edu.co</a> o <a href="mailto:liset.abreu@umb.edu.co" title="Enviar comprobante">liset.abreu@umb.edu.co</a> según el programa académico seleccionado.</p>
+                                        <p class="pasos">Recuerde enviar el comprobante de pago al correo <a href="mailto:admisiones.promocionvirtual@umb.edu.co" title="Enviar comprobante">admisiones.promocionvirtual@umb.edu.co</a> y <a href="mailto:promocion.umbvirtual4@umb.edu.co" title="Enviar comprobante">promocion.umbvirtual4@umb.edu.co</a> según el programa académico seleccionado.</p>
                                       </div>
                                     </div>
                                   </div>
@@ -540,7 +540,7 @@ if ($recipients = $swift->send($message, $failures))
                                                 <input type="textbox" class="span12" id="persona" name="persona" placeholder="Ingresa el nombre de la persona que autoriza la transacción" maxlength="300"  onkeyup="validaremos(this,'special')" onblur="validaremos(this,'special')">
 
                                               <label class="control-label" for="s4">Identificación de la persona que autoriza la transacción (Tarjetahabiente)</label>
-                                                <input type="text" class="span12" id="idPersona" name="idPersona" placeholder="Ingresa el número de identificación de la persona que autoriza la transacción" maxlength="300"  onkeyup="validaremos(this,'special')" onblur="validaremos(this,'special')">
+                                              <input type="text" class="span12" id="idPersona" name="idPersona" placeholder="Ingresa el número de identificación de la persona que autoriza la transacción" maxlength="300"  onkeyup="validaremos(this,'special');" onblur="validaremos(this,'special');">
 
                                               <label class="control-label" for="s4">Identificación expedida en</label>
                                                 <select name="ciudadP" id="ciudadP" class="span12">
@@ -611,7 +611,7 @@ if ($recipients = $swift->send($message, $failures))
                                                     
                                                       <script type="text/javascript">
 
-                                                        function OpenInNewTab(url )
+                                                        function OpenInNewTab(url)
 
                                                         {
 

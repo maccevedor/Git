@@ -269,7 +269,14 @@ return false;
           <h1>ADMISIONES</h1>
         </center>
       </div>
+		<div class="jumbotron franja-dark">
     </div>
+	  <div id="inscripcion-model">
+      <div class="centered">
+        <img src="images/inscripcion.jpg" alt="Inscríbete" width="2560" align="center" />
+      </div>
+    </div>
+	 
     <div class="jumbotron franja-dark">
       <div class="container">
 Nuestros recursos tecnológicos están basados en tecnologías web y en consecuencia los requisitos mínimos para el acceso y uso de ellos se basa igualmente en los mínimos actuales que manejan los proveedores de internet y fabricantes de dispositivos.  La información correspondiente a los requisitos tecnológicos y de conectividad necesarios para cursar un programa en modalidad virtual son los siguientes:<br>
@@ -284,11 +291,7 @@ Nuestros recursos tecnológicos están basados en tecnologías web y en consecue
 
 
 
-   <div id="inscripcion-model">
-      <div class="centered">
-        <img src="images/inscripcion.jpg" alt="Inscríbete" align="center" />
-      </div>
-    </div>
+   
 
 
 <div align="right">
@@ -912,7 +915,7 @@ echo "<option value=".$registro['id'].">".$registro['municipio'].' - '.$registro
                               <li class="previous disabled"> <a href="javascript:void(0);" class="btn small btn-danger lightgray">ANTERIOR</a> </li>
                               <li class="next"> 
                                 <!-- <a href="javascript:void(0);" class="btn medium btn-primary next">SIGUIENTE</a> --> 
-                                <a href="javascript:void(0);" class="btn small btn-danger lightgray">SIGUIENTE</a> </li>
+                                <a href="javascript:;" class="btn small btn-danger lightgray">SIGUIENTE</a> </li>
                               <li > 
                                 <!-- <a id="back-to-top" href="javascript:window.scrollTo(0,0);" style="display: block;" class="btn medium btn-primary" ><i class="icon-chevron-up"></i></a> --> 
                               </li>

@@ -14,21 +14,21 @@ $Manager="";
     {
     include('../lib/Indexcol.php');
     }elseif($fuente=="eikon"){
-    //include('../lib/eikon.php');	
+    include('../lib/eikon.php');
     //echo $eikon;
-    //exit;    
+    //exit;
     }
   $conex = conectaBaseDatos();
 
 
 
-    $names =array($_REQUEST['nombres'],$_REQUEST['apellidos']);
+    $names =array($_REQUEST['nombres']);
     $nombres=ucfirst($names[0]);
-    $apellidos=ucfirst($names[1]);
+    //$apellidos=ucfirst($names[1]);
 
     $objPag=new clsLanding();
     $objPag->setNombres($nombres);
-    $objPag->setApellidos($apellidos);
+    //$objPag->setApellidos($apellidos);
     $objPag->setCedula('000000');
     //$objPag->setCedula($_REQUEST['cedula']);
     $objPag->setCiudad($_REQUEST['ciudad']);
@@ -45,9 +45,9 @@ $Manager="";
     ? trim(strip_tags($_REQUEST['nombres']))
     : "";
 
-    $apellidosP = (isset($_REQUEST['apellidos']))
-    ? trim(strip_tags($_REQUEST['apellidos']))
-    : "";
+    //$apellidosP = (isset($_REQUEST['apellidos']))
+    //? trim(strip_tags($_REQUEST['apellidos']))
+    //: "";
 
     $cedulaP = (isset($_REQUEST['cedula']))
     ? trim(strip_tags($_REQUEST['cedula']))
@@ -135,7 +135,7 @@ if (empty($result)){
 
 				$text = "Mandrill speaks plaintext";
 				$html = "<em>Cordial Saludo<br><br>El siguiente usuario realizó su pre-inscripción vía web por medio del Landing Page de la pagina de la UMB Virtual:<br><br>
-				Nombres: ".$nombresP."<br> Apellidos: ".$apellidosP."<br> Identificación ".$cedulaP."<br> Ciudad: ".$ciudad."<br> Correo: ".$correoP."<br> Teléfono: ".$telefonoP."<br> Programa: ".$programa." <br><br><center>www.umbvirtual.edu.co</center><br><center>Favor no responder a  este e-mail ya que fue generado por un programa de envios de correos másivos</center></em>";
+				Nombres: ".$nombresP."<br> Identificación ".$cedulaP."<br> Ciudad: ".$ciudad."<br> Correo: ".$correoP."<br> Teléfono: ".$telefonoP."<br> Programa: ".$programa." <br><br><center>www.umbvirtual.edu.co</center><br><center>Favor no responder a  este e-mail ya que fue generado por un programa de envios de correos másivos</center></em>";
 
 				$transport = Swift_SmtpTransport::newInstance('smtp.mandrillapp.com', 587);
 				$transport->setUsername('tecnologia@umb.edu.co');
@@ -174,18 +174,33 @@ if (empty($result)){
 
     $mensaje = "Usted ya está registrado en nuestro sistema, si desea información adicional comuníquese al teléfono 5460600 ext 1470 - 1473 o al mail uvirtual@umb.edu.co";
     $texto  = "Si ve el siguiente mensaje por favor realice nuevamente el proceso de inscripción y verifique los datos, en un momento aparecerá el formulario de contacto.";
+    $eikon = "";
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+
+
+  gtag('config', 'UA-114461335-1');
+
+</script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta http-equiv="refresh" content="10;URL=http://umbvirtual.edu.co/" />
+    <!--     <meta http-equiv="refresh" content="10;URL=http://umbvirtual.edu.co/" /> -->
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <!-- <link rel="shortcut icon" href="assets/ico/favicon.ico"> -->
 
@@ -201,29 +216,31 @@ if (empty($result)){
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->	
+    <![endif]-->
 
     <?php echo $Indexcol; ?>
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114461335-1"></script>
   </head>
 
   <body>
 
-    
-	<?php    
-//	echo $fuente;exit;		
+
+	<?php
+//	echo $fuente;exit;
     if($fuente=="Indexcol" or $fuente=="Youtube" or $fuente=="Facebook" or $fuente=="Linkedin")
     {
-	     echo $Manager; 
+	     echo $Manager;
     } elseif($fuente=="eikon" or $fuente=="Eikon")
     {
-		include('../lib/eikon.php');	
+		//include('../lib/eikon.php');
 		echo $eikon;
-		//exit();						    
     }
 	?>
-    
-    
+
+
 
    <div class="navbar">
         <div class="container">
@@ -251,7 +268,7 @@ if (empty($result)){
 
 
                      <?php echo $Conversion; ?>
-
+                    <p><a href="http://umbvirtual.edu.co/" class="btn btn-danger" role="button"> Visítanos en www.umbvirtual.edu.co </a></p>
                 </div>
             </div>
         </div>
@@ -261,7 +278,7 @@ if (empty($result)){
         <div class="container">
             <div class="row">
                 <footer>
-                    <div class="col-md-6 copyright">© 2014 UMB Virtual | Todos los derechos reservados.</div>
+                    <div class="col-md-6 copyright">© 2018 UMB Virtual | Todos los derechos reservados.</div>
                     <div class="col-md-6">
                         <ul class="social-networks social-networks">
                             <li class="facebook"><a title="Facebook" target="_blank" href="http://www.facebook.com/pages/Bogot%C3%A1-Bogot%C3%A1-Colombia/UMB-Virtual/190566057656393">Facebook</a>
@@ -280,4 +297,3 @@ if (empty($result)){
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
-

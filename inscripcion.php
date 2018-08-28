@@ -1,5 +1,5 @@
 <?php
-include('view/header.php'); 
+include('view/header.php');
 ?>
 
     <div class="container">
@@ -16,9 +16,6 @@ include('view/header.php');
 						<input type="hidden" id="fch" name="fch" value="<?php echo $day; ?>" />
 							Nombres:<input type="text" name="nombres" id="nombres" value="" placeholder="Ingresa tu nombre" size="22" tabindex="1" aria-required="true" class="input-name"  onKeyUp="this.value = this.value.toUpperCase();" required>
 						</div>
-						<div class="comment-input">
-							Apellidos:<input type="text" name="apellidos" id="apellidos" value="" placeholder="Ingresa tus apellidos" size="22" tabindex="1" aria-required="true" class="input-name" onKeyUp="this.value = this.value.toUpperCase();" required>
-						</div>
 					</div>
 
 					<div class="col-md-4">
@@ -30,7 +27,7 @@ include('view/header.php');
 																					<option value="99">- Seleccione un Ciudad -</option>
 																				<?php
 																				$ciudades = dameCiudad();
-																			
+
 																				foreach($ciudades as $indice => $registro){
 																					echo "<option value=".$registro['id'].">".$registro['municipio'].' - '.$registro['estado']."</option>";
 																				}
@@ -40,8 +37,8 @@ include('view/header.php');
 					</div>
 
 					<div class="col-md-4">
-						
-                        
+
+
 						<div class="comment-input">
 							Celular o teléfono:<input type="text" name="telefono" id="telefono" value="" placeholder="Ingresa un número de contacto" size="22" tabindex="1" aria-required="true" class="input-name" maxlength=10 required>
 						</div>
@@ -59,7 +56,7 @@ include('view/header.php');
 																			<option value="0">- Seleccione una Programa -</option>
 																				<?php
 																					$categorias = programa();
-																		
+
 																					foreach($categorias as $indice => $registro){
 																					echo "<option value=".$registro['id'].">".$registro['Programa']."</option>";
 																					}
@@ -83,7 +80,7 @@ include('view/header.php');
 						</div>
 					</div>
 
-					
+
 
 					<div class="col-md-12">
 						<input type="submit" id="submit" name="submit" value="Enviar" class="button red" >
@@ -120,6 +117,7 @@ include('view/header.php');
 		</div>
 	</div>
 
+	<!--
 	<div class="jumbotron franja-gris">
 	    <div class="container">
 			<div class="row">
@@ -139,6 +137,7 @@ include('view/header.php');
 			</div>
 		</div>
 	</div>
+	-->
 
 	<div class="jumbotron creditos">
 		<div class="container">
@@ -148,7 +147,7 @@ include('view/header.php');
 						<a href="http://umbvirtual.edu.co/" target="_self" title="UMB Virtual"><img src="http://umbvirtual.edu.co//wp-content/uploads/2014/06/logo-footer.png" border="0"></a>
 						<br><br>
 						© 2014 UMB Virtual<br>
-						<?php 
+						<?php
 						echo $direccion."<br>";
 						echo $ciudad."<br>";
 						echo $telefono."<br>";
@@ -181,8 +180,34 @@ include('view/header.php');
 	<script>
 		//debugger;
 	var url = localStorage.getItem('url') || document.referrer;
-	document.getElementById("url").value = url;	
+	document.getElementById("url").value = url;
 	localStorage.removeItem('url');
 	</script>
+
+	<!-- Global site tag (gtag.js) - Google AdWords: 932678774 -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-932678774"></script>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+
+
+  gtag('config', 'AW-932678774');
+
+</script>
+<!-- Event snippet for Formulario inscripción conversion page -->
+
+<script>
+
+  gtag('event', 'conversion', {'send_to': 'AW-932678774/414jCNejp4MBEPaY3rwD'});
+
+</script>
+
   </body>
 </html>

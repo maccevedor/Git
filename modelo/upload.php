@@ -35,8 +35,6 @@ while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
          continue;
 	}
 	
-	//echo $data[4]."<br>";
-	
 	if(strlen($data[4]) != 1){
 		
 		
@@ -63,16 +61,17 @@ while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
 	}
 
  
-	$observacion = utf8_encode($data[9]);
+	$observacion = utf8_encode($data[8]);
 	$nombre = utf8_encode($data[0]);
 	$apellido = utf8_encode($data[1]);
  
 	$import = "INSERT into  estudiante
-	(Nombre, Apellido,Email,Telefono,celular,ciudad,programa,Descripcion,Fuente,Observacion,Asesor,fch)
-	values('$nombre','$apellido','$data[2]','".($data[3])."','$data[4]','$data[5]',$data[6],$data[7],'$data[8]','$observacion',$data[10],'$data[11]')";
+	(Nombre, Apellido,Email,Telefono,celular,ciudad,programa,Fuente,Observacion,fch)
+	values('$nombre','$apellido','$data[2]','".($data[3])."','$data[4]','$data[5]','$data[6]','$data[7]','$observacion','$data[9]')";
 	//echo $import.'<br>';
+	//die();
 	$insertImport = $conex->query($import);	
-	//print_r($insertImport);echo '<br>';
+	print_r($insertImport);echo '<br>';
 	$count++;
 	}	 
 	fclose($handle);

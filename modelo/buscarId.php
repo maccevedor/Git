@@ -5,6 +5,7 @@ if(isset($_POST['identificacion'])){
 	
 	$identificacion = dameIdentificacion($_POST['identificacion']);
 	//echo $identificacion;
+	//print_r($identificacion);exit;
 	$array = "";
 	foreach($identificacion as $indice => $registro){
 		//$html .= "<option value='".$registro['Id']."'>".$registro['Nombre']."</option>";
@@ -16,7 +17,7 @@ if(isset($_POST['identificacion'])){
 		$email = $registro['Email'];
 		$programa = $registro['Programa'];
 		$id = $registro['Id'];
-		$asesor = $registro['asesor'];
+		$asesor = $registro['Asesor'];
 		//echo $nombre,$apellido,$ciudad,$email ;
 		//exit;
 		$array = array($nombre,$apellido,$telefono,$ciudad,$email,$programa,$asesor,$id);
